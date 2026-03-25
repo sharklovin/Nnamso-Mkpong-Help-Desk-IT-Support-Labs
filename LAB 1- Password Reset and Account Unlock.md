@@ -133,7 +133,7 @@ Click **Next**.
 
 ---
 
-**Step 1.5 — Set Initial Password**
+**Step 1.5 - Set Initial Password**
 
 Set an initial password. Leave **"User must change password at next logon"** unchecked for now — we will enforce this later via the Reset Password dialog after the lockout.
 
