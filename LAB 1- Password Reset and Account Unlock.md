@@ -311,7 +311,6 @@ The **Unlock account** checkbox is visible, confirming the account is locked.
 <img width="411" height="537" alt="ACCOUNT LOCK STATE VERIFICATION" src="https://github.com/user-attachments/assets/259a0dbe-b116-4cc4-be1c-b6e2855fe8e8" />
 
 
->  **Pro Tip:** The Account tab is where you can also check password expiry options, logon hours, and logon workstation restrictions — all relevant in real-world troubleshooting.
 
 ---
 
