@@ -371,7 +371,7 @@ The user enters a new permanent password that meets the domain complexity requir
 
 Windows confirms the change was successful:
 
-![Password Changed Successfully](SCREENSHOT BEN 1O RESET PASSWORD 2 <img width="946" height="552" alt="BEN 1O RESET PASSWORD 2" src="https://github.com/user-attachments/assets/9b2f2daa-2104-4a22-a02e-f234fa93b03f" />
+<img width="946" height="552" alt="BEN 1O RESET PASSWORD 2" src="https://github.com/user-attachments/assets/9b2f2daa-2104-4a22-a02e-f234fa93b03f" />
 
 
 > *"Your password has been changed."*
