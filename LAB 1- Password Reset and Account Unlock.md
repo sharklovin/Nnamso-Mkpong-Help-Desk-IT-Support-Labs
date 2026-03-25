@@ -86,7 +86,7 @@ This scenario mirrors one of the most common and time-sensitive issues a help de
 
 ---
 
-**Step 1.1 — Open Active Directory Users and Computers (ADUC)**
+**Step 1.1 - Open Active Directory Users and Computers (ADUC)**
 
 Press the `Windows` key, type **Active Directory**, and select **Active Directory Users and Computers** from the search results.
 
