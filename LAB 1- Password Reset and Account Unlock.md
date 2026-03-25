@@ -204,7 +204,7 @@ The final configured policy values are shown below:
 
 ---
 
-**Step 2.3 — Set Account Lockout Threshold**
+**Step 2.3 - Set Account Lockout Threshold**
 
 Double-click **Account lockout threshold** and set it to **3 invalid logon attempts**.
 
@@ -215,7 +215,7 @@ Double-click **Account lockout threshold** and set it to **3 invalid logon attem
 
 ---
 
-**Step 2.4 — Set Account Lockout Duration**
+**Step 2.4 - Set Account Lockout Duration**
 
 Set the lockout duration to **15 minutes**. This means a locked account auto-unlocks after 15 minutes without admin intervention (useful for lower-priority lockouts).
 
@@ -224,7 +224,7 @@ Set the lockout duration to **15 minutes**. This means a locked account auto-unl
 
 ---
 
-**Step 2.5 — Set Reset Account Lockout Counter After**
+**Step 2.5 - Set Reset Account Lockout Counter After**
 
 Set the counter reset to **15 minutes**. This resets the failed attempt count if no further failures occur within the window.
 
@@ -233,7 +233,7 @@ Set the counter reset to **15 minutes**. This resets the failed attempt count if
 
 ---
 
-**Step 2.6 — Force Group Policy Update via CMD**
+**Step 2.6 - Force Group Policy Update via CMD**
 
 Open **Command Prompt** as Administrator.
 
@@ -258,13 +258,13 @@ The command output confirms the policy refresh is processing:
 
 ---
 
-### Phase 3 — Trigger the Account Lockout on the Client
+### Phase 3 - Trigger the Account Lockout on the Client
 
 **Goal:** Reproduce the business scenario by entering the wrong password on the Windows 11 client until the account locks.
 
 ---
 
-**Step 3.1 — Attempt Login with Wrong Password (x3)**
+**Step 3.1 - Attempt Login with Wrong Password (x3)**
 
 On the Windows 11 client, attempt to sign in as `ben10@mylab.local` using an **incorrect password** three times in a row.
 
@@ -280,13 +280,13 @@ After the 3rd failed attempt, Windows displays the lockout message:
 
 ---
 
-### Phase 4 — Investigate & Resolve on the Domain Controller
+### Phase 4 - Investigate & Resolve on the Domain Controller
 
 **Goal:** As the help desk/IT admin, locate the affected account, confirm the lock state, reset the password and unlock the account.
 
 ---
 
-**Step 4.1 — Locate the User in ADUC**
+**Step 4.1 - Locate the User in ADUC**
 
 Back on the Domain Controller, open **ADUC** and navigate to the **Users** container. Locate **Ben Tenison** in the user list.
 
@@ -295,7 +295,7 @@ Back on the Domain Controller, open **ADUC** and navigate to the **Users** conta
 
 ---
 
-**Step 4.2 — Open User Properties to Verify Lock State**
+**Step 4.2 - Open User Properties to Verify Lock State**
 
 Right-click **Ben Tenison** → **Properties**.
 
@@ -315,7 +315,7 @@ The **Unlock account** checkbox is visible, confirming the account is locked.
 
 ---
 
-**Step 4.3 — Initiate Password Reset**
+**Step 4.3 - Initiate Password Reset**
 
 Close Properties. Right-click **Ben Tenison** again and select **Reset Password...**.
 
@@ -351,7 +351,7 @@ Notice the status line: **"Account Lockout Status on this Domain Controller: Unl
 
 ---
 
-**Step 5.1 — Sign In with Temporary Password**
+**Step 5.1 - Sign In with Temporary Password**
 
 On the Windows 11 client, sign in as `ben10@mylab.local` using the temporary password set in Step 4.4.
 
@@ -366,7 +366,7 @@ Windows immediately prompts the user to change their password before continuing:
 
 ---
 
-**Step 5.2 — Set a New Permanent Password**
+**Step 5.2 - Set a New Permanent Password**
 
 The user enters a new permanent password that meets the domain complexity requirements and confirms it.
 
@@ -379,7 +379,7 @@ Windows confirms the change was successful:
 
 ---
 
-**Step 5.3 — AD Confirms Password Change**
+**Step 5.3 - AD Confirms Password Change**
 
 Active Directory Domain Services displays a final confirmation dialog:
 
