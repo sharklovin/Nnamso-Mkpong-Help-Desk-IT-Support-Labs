@@ -1,7 +1,9 @@
 # Lab 1: Password Reset and Account Unlock
 
 > **Author:** Nnamso Mkpong
+> 
 > **Domain:** Active Directory Administration
+> 
 > **Environment:** Windows Server 2022 + Windows 11 Client (Virtualised)  
 > **Completed:** March 2026
 
