@@ -195,7 +195,9 @@ Computer Configuration
 The final configured policy values are shown below:
 
 <img width="1021" height="727" alt="GPO FINALE 1" src="https://github.com/user-attachments/assets/50985313-f2ee-40f1-9d5c-198738b3a1a6" /> 
+
 ---
+
 <img width="1022" height="726" alt="GPO FINALE2" src="https://github.com/user-attachments/assets/1f79cb74-ed80-474b-8eb1-315ed14a1d80" />
 
 
