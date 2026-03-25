@@ -1,8 +1,8 @@
-# Help Desk and IT Support Labs
+# Nnamso Mkpong Help Desk and IT Support Labs
 
 A practical, hands-on repository documenting 20 real-world Help Desk and IT Support labs built to develop job-ready troubleshooting, user support, system administration, and documentation skills.
 
-Each lab is structured the way real support work is structured — a business scenario, clear objective, tools used, step-by-step actions, screenshots, outcome, and notes. Not theory. Actual work.
+Each lab is structured the way real support work is structured in a business scenario, clear objective, tools used, step-by-step actions, screenshots, outcome, and notes. Not theory but Actual work.
 
 ---
 
@@ -10,7 +10,7 @@ Each lab is structured the way real support work is structured — a business sc
 
 The goal of this project is simple. Instead of listing skills on a resume, this repository shows them.
 
-Every lab reflects a task that comes up in real IT support environments. The kind of thing a help desk technician, desktop support analyst, or junior sysadmin deals with on a daily basis. The focus throughout is on doing the work properly, thinking through the problem, and documenting it in a way that would hold up in a professional setting.
+Every lab reflects a task that comes up in real IT support environments. The kind of thing a help desk technician, desktop support analyst, or junior sysadmin deals with on a daily basis. The focus throughout is on doing the work properly, thinking through the problem and documenting it in a way that would hold up in a professional setting.
 
 The labs cover areas including:
 
@@ -95,10 +95,10 @@ help-desk-it-support-labs/
 ## Lab Index
 
 **Lab 01 — Password Reset and Account Unlock**
-Reset a forgotten password, unlock a locked user account, and force a password change at next sign-in.
+Reset a forgotten password, unlock a locked user account and force a password change at next sign-in.
 
 **Lab 02 — User Account Creation and Management**
-Create, modify, disable, and manage user accounts in a support environment.
+Create, modify, disable and manage user accounts in a support environment.
 
 **Lab 03 — Join a Computer to the Domain**
 Add a Windows client to a domain and verify successful communication with the domain controller.
@@ -110,10 +110,10 @@ Connect users to a shared network location and troubleshoot common access issues
 Configure NTFS and share permissions to control access to files and folders.
 
 **Lab 06 — Printer Troubleshooting**
-Diagnose printer connectivity, driver, queue, and user access issues.
+Diagnose printer connectivity, driver, queue and user access issues.
 
 **Lab 07 — IP Configuration and Connectivity Checks**
-Use basic network tools to confirm addressing, connectivity, and communication issues.
+Use basic network tools to confirm addressing, connectivity and communication issues.
 
 **Lab 08 — DNS Troubleshooting**
 Identify and resolve name resolution problems affecting user access to resources.
@@ -184,9 +184,9 @@ It demonstrates the ability to follow a support process, work through technical 
 
 ## How to Navigate This Repository
 
-Each lab lives in its own folder and is written to stand alone. You can open any lab independently without needing the context of another.
+Each lab lives and is written to stand alone. No need opening folders as you can view everything on this folder.
 
-Each folder contains a full write-up in Markdown, supporting screenshots, and any commands or references used during the exercise.
+Each Lab contains a full write-up in Markdown, supporting screenshots, and any commands or references used during the exercise.
 
 ---
 
@@ -209,7 +209,7 @@ The work documented here is directly relevant to roles such as:
 **Nnamso Edet Mkpong**
 IT Support and Cybersecurity Professional
 
-This repository is part of a broader hands-on portfolio built to demonstrate practical technical skills across IT support, troubleshooting, system administration, and security operations.
+This repository is part of a broader hands-on portfolio built to demonstrate practical technical skills across IT support, troubleshooting, system administration and security operations.
 
 ---
 
@@ -221,4 +221,6 @@ These labs were completed in a controlled virtual environment for learning and p
 
 ## License
 
-This project is shared for portfolio and evaluation purposes. You are welcome to view the work for learning and reference, but you may not reproduce, redistribute, or republish any part of it as your own.
+This repository is provided for portfolio, learning and review purposes only.
+
+All content in this repository is the original work of the author. No part of this repository may be copied, republished, redistributed or presented as another person's work without explicit permission from the author.
