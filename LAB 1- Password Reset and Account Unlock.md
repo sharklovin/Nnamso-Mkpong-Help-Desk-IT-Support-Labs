@@ -88,7 +88,7 @@ This scenario mirrors one of the most common and time-sensitive issues a help de
 
 **Step 1.1 - Open Active Directory Users and Computers (ADUC)**
 
-Press the `Windows` key, type **Active Directory**, and select **Active Directory Users and Computers** from the search results.
+Press the `Windows` key, type **Active Directory** and select **Active Directory Users and Computers** from the search results.
 
 <img width="760" height="642" alt="1" src="https://github.com/user-attachments/assets/f5c42b3f-e1e4-451c-a471-d598dbb6c403" />
 
@@ -106,7 +106,7 @@ Expand the `mylab.local` domain node in the left panel to see the default contai
 
 ---
 
-**Step 1.3 — Create a New User**
+**Step 1.3 - Create a New User**
 
 Right-click the **Users** container → **New** → **User**.
 
@@ -115,9 +115,9 @@ Right-click the **Users** container → **New** → **User**.
 
 ---
 
-**Step 1.4 — Fill in User Details**
+**Step 1.4 - Fill in User Details**
 
-Enter the following details in the New Object – User wizard:
+Enter the following details in the New Object - User wizard:
 
 | Field | Value |
 |---|---|
