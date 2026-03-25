@@ -91,7 +91,8 @@ This scenario mirrors one of the most common and time-sensitive issues a help de
 
 Press the `Windows` key, type **Active Directory**, and select **Active Directory Users and Computers** from the search results.
 
-![Opening ADUC from Start Menu](add screen shot1.png)
+![Opening ADUC from Start Menu] <img width="760" height="642" alt="1" src="https://github.com/user-attachments/assets/f5c42b3f-e1e4-451c-a471-d598dbb6c403" />
+
 
 >  **Note:** ADUC is the primary GUI tool for managing domain user accounts, groups and OUs. All user administration in this lab takes place here.
 
