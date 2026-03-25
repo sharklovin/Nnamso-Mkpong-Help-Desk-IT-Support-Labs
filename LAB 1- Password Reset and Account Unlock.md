@@ -344,7 +344,7 @@ Notice the status line: **"Account Lockout Status on this Domain Controller: Unl
 
 ---
 
-### Phase 5 — Validate the Fix on the Client
+### Phase 5 - Validate the Fix on the Client
 
 **Goal:** Confirm the user can sign in with the temporary password and is prompted to set a new one.
 
