@@ -395,7 +395,7 @@ Active Directory Domain Services displays a final confirmation dialog:
 ```
 ──────────────────────────────────────────────────────────────
 TICKET #0042 | ACCOUNT LOCKOUT / PASSWORD RESET
-Technician: [Your Name] | Date: March 2026 | Priority: HIGH
+Technician: Nnamso Mkpong | Date: March 2026 | Priority: HIGH
 ──────────────────────────────────────────────────────────────
 
 ISSUE REPORTED:
