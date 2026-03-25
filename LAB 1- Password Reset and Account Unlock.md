@@ -1,7 +1,8 @@
 # Lab 1: Password Reset and Account Unlock
 
-> **Author:**: Nnamso Mkpong
-> **Domain:** Active Directory Administration | **Environment:** Windows Server 2022 + Windows 11 Client (Virtualised)  
+> **Author:** Nnamso Mkpong
+> **Domain:** Active Directory Administration
+> **Environment:** Windows Server 2022 + Windows 11 Client (Virtualised)  
 > **Completed:** March 2026
 
 
@@ -476,4 +477,4 @@ Password resets and account lockouts are consistently among the **top 3 most com
 
 ---
 
-*Lab completed and documented by Nnamso Mkpong — IT Support Portfolio | GitHub: Sharklovin*
+*Lab completed and documented by Nnamso Mkpong.*
