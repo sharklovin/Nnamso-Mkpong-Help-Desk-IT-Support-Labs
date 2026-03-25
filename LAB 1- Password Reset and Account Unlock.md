@@ -471,9 +471,9 @@ Password resets and account lockouts are consistently among the **top 3 most com
 | "Unlock account" checkbox not visible | Account is not locked; it may be disabled | Check if account is disabled instead of right-click → Enable Account |
 | GPO not applying after configuration | Policy hasn't propagated yet | Run `gpupdate /force` on the domain controller |
 | User not found in Users container | Account may be in a different OU | Use ADUC Find (Ctrl+F) to search the whole domain |
-| Lockout happening immediately on login | Clock skew between DC and client | Check time sync — `w32tm /query /status` |
+| Lockout happening immediately on login | Clock skew between DC and client | Check time sync - `w32tm /query /status` |
 | Password reset dialog greys out "Unlock" | Account not currently locked | No unlock needed; just reset the password |
-| New password rejected by domain | Doesn't meet complexity requirements | Remind user: 8+ chars, uppercase, lowercase, number, symbol |
+| New password rejected by domain | Doesn't meet complexity requirements | Remind user: 8+ characters, uppercase, lowercase, number, symbol |
 
 ---
 
