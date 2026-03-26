@@ -6,33 +6,9 @@
 
 ---
 
-## Table of Contents
-
-- [Objective](#objective)
-- [Business Scenario](#business-scenario)
-- [Environment and Tools Used](#environment-and-tools-used)
-- [Lab Architecture](#lab-architecture)
-- [Pre-Lab Checklist](#pre-lab-checklist)
-- [Steps Performed](#steps-performed)
-  - [Phase 1 — Access Active Directory Users and Computers](#phase-1--access-active-directory-users-and-computers)
-  - [Phase 2 — Create the Organizational Unit](#phase-2--create-the-organizational-unit)
-  - [Phase 3 — Create the New User Account](#phase-3--create-the-new-user-account)
-  - [Phase 4 — Populate User Attributes](#phase-4--populate-user-attributes)
-  - [Phase 5 — Create the Sales Group and Assign Membership](#phase-5--create-the-sales-group-and-assign-membership)
-  - [Phase 6 — Disable the Account](#phase-6--disable-the-account)
-  - [Phase 7 — Re-enable the Account](#phase-7--re-enable-the-account)
-- [Help Desk Ticket Note](#help-desk-ticket-note)
-- [Group Membership Justification](#group-membership-justification)
-- [Outcome and Validation](#outcome-and-validation)
-- [What I Learned](#what-i-learned)
-- [Real World Relevance](#real-world-relevance)
-- [Troubleshooting Reference](#troubleshooting-reference)
-
----
-
 ## Objective
 
-Create a new domain user account inside a dedicated Organisational Unit, populate all relevant profile attributes, assign the account to an appropriate security group, disable the account in response to an HR suspension request, and then re-enable it when access is reinstated.
+Create a new domain user account inside a dedicated Organisational Unit, populate all relevant profile attributes, assign the account to an appropriate security group, disable the account in response to an HR suspension request and then re-enable it when access is reinstated.
 
 ---
 
@@ -40,11 +16,11 @@ Create a new domain user account inside a dedicated Organisational Unit, populat
 
 > **Ticket #0051 | New Starter Provisioning + Temporary Suspension**
 >
-> HR has submitted a new starter request for **Hogan Hogan**, joining the Sales department as a Sales Assistant. The account needs to be created, fully populated with contact and organisational details, and added to the Sales security group before their start date.
+> HR has submitted a new starter request for **Hogan Hogan**, joining the Sales department as a Sales Assistant. The account needs to be created, fully populated with contact and organisational details and added to the Sales security group before their start date.
 >
 > A follow-up request arrives shortly after: HR asks for access to be suspended temporarily while an onboarding matter is resolved. Once cleared, they request the account be reinstated.
 
-This scenario covers two of the most routine tasks in any IT support role — provisioning a new account and managing the user lifecycle through disable and re-enable actions.
+This scenario covers two of the most routine tasks in any IT support role which is provisioning a new account and managing the user lifecycle through disable and re-enable actions.
 
 ---
 
@@ -80,32 +56,22 @@ mylab.local
 
 ---
 
-## Pre-Lab Checklist
-
-Before starting, confirm the following are in place:
-
-- Windows Server 2022 is running and promoted as a Domain Controller with AD DS installed
-- You are logged in as Administrator on the domain controller
-- Server Manager loads without errors and AD DS shows as a healthy role
-- No existing OU named Office Users conflicts with what you are about to create
-
----
-
 ## Steps Performed
 
 ---
 
-### Phase 1 — Access Active Directory Users and Computers
+### Phase 1 - Access Active Directory Users and Computers
 
 **Step 1.1 — Open Server Manager**
 
 Press the `Windows` key, type **Server Manager**, and open it. This is the central administration console on Windows Server from which all AD tools are accessed.
 
-![Open Server Manager from Start](screenshots/01-open-server-manager.png)
+<img width="758" height="674" alt="Open server maanger" src="https://github.com/user-attachments/assets/111c3346-b642-4e5b-b8e4-ebef56020186" />
+
 
 ---
 
-**Step 1.2 — Navigate to ADUC via Tools Menu**
+**Step 1.2 - Navigate to ADUC via Tools Menu**
 
 Inside Server Manager, click **Tools** in the top-right menu bar and select **Active Directory Users and Computers** from the dropdown list.
 
