@@ -143,7 +143,7 @@ Click **Next**.
 
 ---
 
-**Step 3.3 — Set the Initial Password**
+**Step 3.3 - Set the Initial Password**
 
 Enter and confirm an initial password. Password options are left at their defaults for now. These can be adjusted later depending on the organisation's onboarding policy.
 
