@@ -1,4 +1,4 @@
-# Lab 1: Password Reset and Account Unlock
+# Password Reset and Account Unlock
 
 > **Author:** Nnamso Mkpong
 > 
