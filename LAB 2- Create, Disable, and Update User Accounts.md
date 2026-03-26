@@ -282,7 +282,7 @@ Right-click **Hogan Hogan** and select **Properties** to navigate to the group m
 
 Go to the **Member Of** tab. The user currently only belongs to the default **Domain Users** group. Click **Add** to assign an additional group.
 
-<img width="456" height="253" alt="ADD SALES AND CLICK CHECK NAMES" src="https://github.com/user-attachments/assets/aa3d87d9-5ac9-4bcd-8852-fe086a3539e0" />
+<img width="405" height="551" alt="CLICK ON ADD" src="https://github.com/user-attachments/assets/0ba56f85-e269-441a-b42a-8e41d46dbc55" />
 
 
 ---
@@ -291,8 +291,7 @@ Go to the **Member Of** tab. The user currently only belongs to the default **Do
 
 In the Select Groups dialog, type **Sales** in the object names field and click **Check Names** to resolve and validate the group name against the directory.
 
-<img width="405" height="551" alt="CLICK ON ADD" src="https://github.com/user-attachments/assets/0ba56f85-e269-441a-b42a-8e41d46dbc55" />
-
+<img width="456" height="253" alt="ADD SALES AND CLICK CHECK NAMES" src="https://github.com/user-attachments/assets/aa3d87d9-5ac9-4bcd-8852-fe086a3539e0" />
 
 Click **OK** to confirm.
 
