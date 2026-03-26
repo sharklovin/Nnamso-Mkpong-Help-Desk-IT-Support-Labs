@@ -85,9 +85,9 @@ Inside Server Manager, click **Tools** in the top-right menu bar and select **Ac
 
 ---
 
-### Phase 2 — Create the Organizational Unit
+### Phase 2 - Create the Organizational Unit
 
-**Step 2.1 — Right-click the Domain to Create a New OU**
+**Step 2.1 - Right-click the Domain to Create a New OU**
 
 In ADUC, right-click the domain root **mylab.local** in the left panel, hover over **New**, and select **Organizational Unit** from the submenu.
 
