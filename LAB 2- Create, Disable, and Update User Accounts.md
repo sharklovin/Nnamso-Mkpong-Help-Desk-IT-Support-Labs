@@ -94,11 +94,11 @@ In ADUC, right-click the domain root **mylab.local** in the left panel, hover ov
 <img width="1012" height="725" alt="ON domain right click to Organization Unit" src="https://github.com/user-attachments/assets/1f9bfa22-4fd8-437d-b9d9-9e916ebac84f" />
 
 
-> **Why create an OU?** Organisational Units allow administrators to logically group user accounts by department, location, or function. This makes it easier to apply Group Policies selectively, delegate control to managers, and keep the directory clean and well-structured. Dumping every user into the default Users container is considered poor practice in a real environment.
+> **You may ask why create an OU?** Organisational Units allow administrators to logically group user accounts by department, location or function. This makes it easier to apply Group Policies selectively, delegate control to managers and keep the directory clean and well-structured. Dumping every user into the default Users container is considered poor practice in a real environment.
 
 ---
 
-**Step 2.2 — Name the Organisational Unit**
+**Step 2.2 - Name the Organisational Unit**
 
 In the New Object – Organizational Unit dialog, enter the name **Office Users**. Leave the **Protect container from accidental deletion** checkbox ticked. Click **OK**.
 
