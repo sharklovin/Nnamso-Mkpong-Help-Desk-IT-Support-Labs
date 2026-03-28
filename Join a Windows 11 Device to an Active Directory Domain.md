@@ -197,7 +197,7 @@ Navigate to: `[DOMAIN] → Computers`
 
 ```
 ──────────────────────────────────────────────────────────────────
-TICKET #0052 | NEW DEVICE PROVISIONING — DOMAIN JOIN
+TICKET #0052 | NEW DEVICE PROVISIONING: DOMAIN JOIN
 Technician: Nnamso Mkpong | Date: March 2026 | Priority: STANDARD
 ──────────────────────────────────────────────────────────────────
 
