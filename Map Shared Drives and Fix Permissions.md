@@ -259,7 +259,7 @@ On the Windows 11 client, open **File Explorer → This PC  →  Map network dri
 |---|---|
 | Drive letter | Z: |
 | Folder | \\\\[DC_IP]\\DepartmentShare |
-| Reconnect at sign-in | check |
+| Reconnect at sign-in | tick |
 
 Click **Finish**.
 
