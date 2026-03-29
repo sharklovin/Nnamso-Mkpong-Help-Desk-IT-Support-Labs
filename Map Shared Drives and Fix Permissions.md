@@ -129,7 +129,8 @@ Right-click the folder → **Properties → Sharing tab → Advanced Sharing**. 
 
 Inside the Permissions dialog, click **Add** and type `Department_Sales`. Click **Check Names** to resolve the group against the directory, then click **OK**.
 
-<img width="363" height="446" alt="03-share-permissions-department-sales" src="https://github.com/user-attachments/assets/6d7a2e66-27c8-4205-bad7-4add4fa02c44" />
+<img width="454" height="253" alt="05-adding-group-to-permissions" src="https://github.com/user-attachments/assets/2a8c12cf-6ea7-4ed9-b040-3013b7328d8d" />
+
 
 
 ---
@@ -138,7 +139,7 @@ Inside the Permissions dialog, click **Add** and type `Department_Sales`. Click 
 
 With **Department_Sales** selected in the group list, tick **Allow** for both **Change** and **Read**. Leave **Full Control** unticked. Click **Apply**, then **OK**.
 
-<img width="363" alt="Share permissions showing Department_Sales with Change and Read allowed" src="screenshots/03-share-permissions-department-sales.png" />
+<img width="363" height="446" alt="03-share-permissions-department-sales" src="https://github.com/user-attachments/assets/6d7a2e66-27c8-4205-bad7-4add4fa02c44" />
 
 > **You may ask why not Full Control on the share?** Full Control at the share level grants users the ability to change permissions on the share itself. This is almost never appropriate for end users. 
 
