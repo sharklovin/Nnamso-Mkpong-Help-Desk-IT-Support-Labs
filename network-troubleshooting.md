@@ -136,7 +136,7 @@ ping 127.0.0.1
 ping 192.16*.*.**
 ```
 
-<img width="830" alt="ping 192.168.1.49 showing 4 successful replies" src="screenshots/03-ping-own-ip-192.168.1.49.png" />
+<img width="830" height="253" alt="pinging my ip" src="https://github.com/user-attachments/assets/0289c006-bb42-4b43-be53-a0d244c87297" />
 
 > ✅ 4 out of 4 packets returned with sub-1ms response times. The network adapter is active, the IP address is correctly bound to it, and the machine is responding to traffic addressed to its own IP. A failure here with a passing loopback test would indicate the adapter is down or the IP is incorrectly assigned.
 
