@@ -112,7 +112,8 @@ ping [CLIENT_IP]
 ping [DEFAULT_GATEWAY]
 ```
 
-<img width="830" height="253" alt="pinging my ip" src="https://github.com/user-attachments/assets/0289c006-bb42-4b43-be53-a0d244c87297" />
+<img width="874" height="250" alt="Ping the Default Gateway " src="https://github.com/user-attachments/assets/ff03eab0-5a56-4807-adc0-103e2befcd84" />
+
 
 
 > 4 out of 4 packets returned. Response times of 1–3ms are consistent with a local LAN hop. The machine can reach the router, which means the cable, switch, and LAN segment are all functioning. A failure here with passing loopback and own-IP tests would point to a cable fault, switch port issue or gateway configuration problem.
