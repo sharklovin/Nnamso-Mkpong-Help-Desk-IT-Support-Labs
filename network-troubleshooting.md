@@ -90,7 +90,7 @@ ping 127.0.0.1
 
 
 
->  4 out of 4 packets returned with sub-1ms response times. The local TCP/IP stack is functioning correctly. This test does not use the network adapter or any cables — it is purely internal to the operating system. A failure here would indicate a corrupted TCP/IP stack or disabled networking service.
+>  4 out of 4 packets returned with sub-1ms response times. The local TCP/IP stack is functioning correctly.  A failure here would indicate a corrupted TCP/IP stack or disabled networking service.
 
 ---
 
@@ -106,20 +106,20 @@ ping [CLIENT_IP]
 
 ---
 
-**Step 2.3 — Ping the Default Gateway (Layer 3 — LAN Connectivity)**
+**Step 2.3 - Ping the Default Gateway (Layer 3 - LAN Connectivity)**
 
 ```cmd
-ping 192.168.1.1
+ping [DEFAULT_GATEWAY]
 ```
 
 <img width="830" height="253" alt="pinging my ip" src="https://github.com/user-attachments/assets/0289c006-bb42-4b43-be53-a0d244c87297" />
 
 
-> 4 out of 4 packets returned. Response times of 1–3ms are consistent with a local LAN hop. The machine can reach the router, which means the cable, switch, and LAN segment are all functioning. A failure here with passing loopback and own-IP tests would point to a cable fault, switch port issue, or gateway configuration problem.
+> 4 out of 4 packets returned. Response times of 1–3ms are consistent with a local LAN hop. The machine can reach the router, which means the cable, switch, and LAN segment are all functioning. A failure here with passing loopback and own-IP tests would point to a cable fault, switch port issue or gateway configuration problem.
 
 ---
 
-**Step 2.4 — Ping a Public IP Address (Layer 4 — Internet Path)**
+**Step 2.4 - Ping a Public IP Address (Layer 4 — Internet Path)**
 
 ```cmd
 ping 8.8.8.8
@@ -128,7 +128,7 @@ ping 8.8.8.8
 <img width="813" height="247" alt="ping internet" src="https://github.com/user-attachments/assets/520655b5-91a3-40c6-adcc-f3cadff59fa4" />
 
 
->  4 out of 4 packets returned. Response times of 31–43ms are normal for a public internet target. Packets are leaving the local network, routing through the internet, reaching Google's DNS servers, and returning successfully. Full connectivity confirmed at baseline.
+>  4 out of 4 packets returned. Response times of 31–43ms are normal for a public internet target. Packets are leaving the local network, routing through the internet, reaching Google's DNS servers and returning successfully. Full connectivity confirmed at baseline.
 
 ---
 
@@ -169,7 +169,7 @@ ipconfig /renew
 
 ---
 
-**Step 3.4 — Run arp -a to Check Gateway Resolution**
+**Step 3.4 - Run arp -a to Check Gateway Resolution**
 
 ```cmd
 arp -a
@@ -178,7 +178,7 @@ arp -a
 <img width="764" height="77" alt="Arp result" src="https://github.com/user-attachments/assets/f6f08778-1d30-4fb1-9cbb-698f0b1ac1f1" />
 
 
->  **No ARP Entries Found.** Under normal conditions, the ARP cache would contain at least the MAC address of the default gateway (192.***.*.*), because the machine would have resolved it during normal communication. An empty ARP cache with a disconnected adapter confirms that no layer-2 communication has occurred since the adapter went down. The machine cannot resolve MAC addresses on the local segment because it has no link.
+>  **No ARP Entries Found.** Under normal conditions, the ARP cache would contain at least the MAC address of the default gateway [DEFAULT_GATEWAY], because the machine would have resolved it during normal communication. An empty ARP cache with a disconnected adapter confirms that no layer-2 communication has occurred since the adapter went down. The machine cannot resolve MAC addresses on the local segment because it has no link.
 
 ---
 
@@ -199,7 +199,7 @@ ping 8.8.8.8
 <img width="676" height="254" alt="ping internet after  reconnecting to the internet" src="https://github.com/user-attachments/assets/103fae72-263b-4076-9d1c-5836350817e1" />
 
 
->  4 out of 4 packets returned. Response times of 17–23ms confirm that connectivity is fully restored. The adapter re-joined the network, DHCP re-issued the lease, and the internet path is clear. The diagnostic sequence is complete.
+>  4 out of 4 packets returned. Response times of 17–23ms confirm that connectivity is fully restored. The adapter re-joined the network, DHCP re-issued the lease and the internet path is clear. The diagnostic sequence is complete.
 
 ---
 
