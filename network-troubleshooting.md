@@ -32,7 +32,7 @@ This scenario trains the most important first-response skill in network support:
 |---|---|
 | **Client OS** | Windows 11 |
 | **Hostname** | WIN11_CLIENT01 |
-| **Domain** | mylab.local |
+| **Domain** | [DOMAIN_NAME] |
 | **Client IP** | [CLIENT_IP] (DHCP lease) |
 | **Subnet Mask** | 255.255.255.0 |
 | **Default Gateway** | [DEFAULT_GATEWAY]|
@@ -69,7 +69,7 @@ Key values confirmed from this output:
 |---|---|---|
 | Host Name | WIN11_CLIENT01 | Machine identity confirmed |
 | Primary DNS Suffix |[DOMAIN NAME] | Domain membership confirmed |
-| Physical Address | 00-**-**-E1-**-07 | MAC address of the NIC |
+| Physical Address | [MAC_ADDRESS] | MAC address of the NIC |
 | DHCP Enabled | Yes | IP assigned dynamically |
 | IPv4 Address | [CLIENT_IP] | Client's current IP |
 | Default Gateway | [DEFAULT_GATEWAY] | Router / exit point for all traffic |
