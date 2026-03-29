@@ -119,7 +119,7 @@ ping [DEFAULT_GATEWAY]
 
 ---
 
-**Step 2.4 - Ping a Public IP Address (Layer 4 — Internet Path)**
+**Step 2.4 - Ping a Public IP Address (Layer 4 - Internet Path)**
 
 ```cmd
 ping 8.8.8.8
