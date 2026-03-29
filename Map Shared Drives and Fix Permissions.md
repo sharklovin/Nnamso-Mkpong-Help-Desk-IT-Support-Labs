@@ -2,26 +2,27 @@
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Active Directory Administration — File Sharing and Permissions
+> **Domain:** Active Directory Administration File Sharing and Permissions
 >
 > **Environment:** Windows Server 2022 + Windows 11 Client (Virtualised)
+> 
 > **Completed:** March 2026
 
 ---
 
 ## Objective
 
-Create a shared folder on the server, configure share and NTFS permissions scoped to a security group, map the drive on a client machine, and troubleshoot access denied errors by testing with both an authorised and an unauthorised user.
+Create a shared folder on the server, configure share and NTFS permissions scoped to a security group, map the drive on a client machine and troubleshoot access denied errors by testing with both an authorised and an unauthorised user.
 
 ---
 
 ## Business Scenario
 
-> **Ticket #0053 | Department Share Access — Permissions Fault**
+> **Ticket #0053 | Department Share Access - Permissions Fault**
 >
-> A user reports they cannot access the department file share after being moved to a new team. A second user on the same team has no issues. IT support has been asked to investigate whether the fault lies in share permissions, NTFS permissions, or group membership — and to restore correct access without granting permissions directly to individual accounts.
+> A user reports they cannot access the department file share after being moved to a new team. A second user on the same team has no issues. IT support has been asked to investigate whether the fault lies in share permissions, NTFS permissions or group membership  and to restore correct access without granting permissions directly to individual accounts.
 
-This scenario covers two of the most frequent permission-related support tasks: provisioning a shared folder correctly from scratch, and diagnosing why one user can access a share while another cannot.
+This scenario covers two of the most frequent permission related support tasks: provisioning a shared folder correctly from scratch and diagnosing why one user can access a share while another cannot.
 
 ---
 
@@ -31,14 +32,14 @@ This scenario covers two of the most frequent permission-related support tasks: 
 |---|---|
 | **Server OS** | Windows Server 2022 Evaluation |
 | **Client OS** | Windows 11 |
-| **Domain** | mylab.local |
-| **Domain Controller IP** | 192.168.1.10 |
+| **Domain** | [DOMAIN] |
+| **Domain Controller IP** | [DC_IP] |
 | **Shared Folder** | DepartmentShare |
-| **Share Path** | \\\\192.168.1.10\\DepartmentShare |
+| **Share Path** | \\\\[DC_IP]\\DepartmentShare |
 | **Mapped Drive Letter** | Z: |
 | **Security Group** | Department_Sales (Global Security) |
-| **Authorised User** | Jayson Sule (Jayson419@mylab.local) |
-| **Test User (unauthorised)** | Otobong Mkpong (Choko101@mylab.local) |
+| **Authorised User** | Jayson Sule (Jayson419[DPMAIN]) |
+| **Test User (unauthorised)** | Otobong Mkpong (Choko101@m[DOMAIN]) |
 | **Tools Used** | ADUC, File Explorer, Advanced Sharing, Security tab (NTFS) |
 
 ---
@@ -46,10 +47,10 @@ This scenario covers two of the most frequent permission-related support tasks: 
 ## Lab Architecture
 
 ```
-mylab.local
+[DOMAIN]
 │
 ├── Domain Controllers
-│     └── WIN-SERVER01 (192.168.1.10)
+│     └── WIN-SERVER01 ([DC_IP])
 │           └── C:\Users\Administrator\Desktop\DepartmentShare  ← Shared folder
 │
 └── Users
@@ -60,7 +61,7 @@ mylab.local
 
 ---
 
-## NTFS Permissions vs Share Permissions — Key Concept
+## NTFS Permissions vs Share Permissions - Key Concept
 
 > **Understanding the difference between these two permission layers is the most important diagnostic skill in this lab.**
 
@@ -74,7 +75,7 @@ Windows applies **two independent permission layers** to any network share. Both
 **The effective permission is always the most restrictive combination of both layers.**
 
 ```
-User attempts to open \\server\DepartmentShare
+User attempts to open \\[DC_IP]\DepartmentShare
          │
          ▼
 Share Permission check
@@ -90,7 +91,7 @@ NTFS Permission check   Access Denied immediately
 Access granted   Access Denied
 ```
 
-In most enterprise environments, share permissions are set to **Change** for the security group and NTFS permissions are used for fine-grained control. This is the approach used in this lab.
+In most enterprise environments, share permissions are set to **Change** for the security group and NTFS permissions are used for fine grained control. This is the approach used in this lab.
 
 ---
 
@@ -98,13 +99,14 @@ In most enterprise environments, share permissions are set to **Change** for the
 
 ---
 
-### Phase 1 — Create the Shared Folder on the Server
+### Phase 1 - Create the Shared Folder on the Server
 
-**Step 1.1 — Create the DepartmentShare Folder**
+**Step 1.1 - Create the DepartmentShare Folder**
 
-On the Domain Controller, navigate to a suitable location (in this lab, the Administrator's Desktop) and create a new folder named **DepartmentShare**.
+On the Window Server 22 machine, navigate to a suitable location and create a new folder named **DepartmentShare**.
 
-<img width="625" alt="DepartmentShare folder created on the server" src="screenshots/01-department-share-folder-created.png" />
+<img width="625" height="454" alt="Department Share Folder" src="https://github.com/user-attachments/assets/9816e3b8-cd5a-48c2-95b6-3e15fca2b4af" />
+
 
 > The folder name becomes the share name that clients use to connect. Keeping it descriptive and without spaces avoids UNC path issues. In a production environment this folder would typically live on a dedicated data volume such as `D:\Shares\DepartmentShare` rather than on the system drive.
 
@@ -122,7 +124,7 @@ Right-click the folder → **Properties → Sharing tab → Advanced Sharing**. 
 
 ### Phase 2 — Configure Share Permissions
 
-**Step 2.1 — Add Department_Sales to Share Permissions**
+**Step 2.1 - Add Department_Sales to Share Permissions**
 
 Inside the Permissions dialog, click **Add** and type `Department_Sales`. Click **Check Names** to resolve the group against the directory, then click **OK**.
 
