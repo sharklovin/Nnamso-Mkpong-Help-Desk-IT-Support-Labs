@@ -1,25 +1,26 @@
-# Lab 06: Network Troubleshooting with ipconfig and ping
+# Network Troubleshooting with ipconfig and ping
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Network Diagnostics — Command Line Tools
+> **Domain:** Network Diagnostics - Command Line Tools
 >
-> **Environment:** Windows 11 Client (Virtualised, domain-joined to mylab.local)
+> **Environment:** Windows 11 Client (Virtualised)
+> 
 > **Completed:** March 2026
 
 ---
 
 ## Objective
 
-Use core Windows command line tools to diagnose a simulated internet connectivity failure, identify exactly where in the network stack the fault occurs, restore connectivity, and document the diagnostic sequence in the order it was tested.
+Use core Windows command line tools to diagnose a simulated internet connectivity failure, identify exactly where in the network stack the fault occurs, restore connectivity and document the diagnostic sequence in the order it was tested.
 
 ---
 
 ## Business Scenario
 
-> **Ticket #0054 | User Reports Internet Down — Connectivity Investigation**
+> **Ticket #0054 | User Reports Internet Down - Connectivity Investigation**
 >
-> A user calls the helpdesk to report that the internet is not working on their machine. Before escalating or replacing hardware, IT support runs a structured command line diagnostic to determine whether the fault is in the local TCP/IP stack, the network adapter, the LAN, the gateway, or the path to the internet. The network adapter is then deliberately disconnected to simulate the failure, and the diagnostic sequence is repeated to capture the difference between a working and a broken state.
+> A user calls the helpdesk to report that the internet is not working on their machine. Before escalating or replacing hardware, IT support runs a structured command line diagnostic to determine whether the fault is in the local TCP/IP stack, the network adapter, the LAN, the gateway or the path to the internet. The network adapter is then deliberately disconnected to simulate the failure and the diagnostic sequence is repeated to capture the difference between a working and a broken state.
 
 This scenario trains the most important first-response skill in network support: using a repeatable, layered ping sequence to isolate exactly where connectivity breaks, rather than guessing or escalating immediately.
 
@@ -32,17 +33,17 @@ This scenario trains the most important first-response skill in network support:
 | **Client OS** | Windows 11 |
 | **Hostname** | WIN11_CLIENT01 |
 | **Domain** | mylab.local |
-| **Client IP** | 192.168.1.49 (DHCP lease) |
+| **Client IP** | [DC_IP] (DHCP lease) |
 | **Subnet Mask** | 255.255.255.0 |
-| **Default Gateway** | 192.168.1.1 |
-| **DNS Server** | 192.168.1.10 (Domain Controller) |
-| **DHCP Server** | 192.168.1.1 |
+| **Default Gateway** | 192.***.*.*|
+| **DNS Server** | 192.***.*.** (Domain Controller) |
+| **DHCP Server** | 192.***.*.* |
 | **Public IP tested** | 8.8.8.8 (Google DNS) |
 | **Tools Used** | Command Prompt, ipconfig, ping, arp |
 
 ---
 
-## The Diagnostic Sequence — Key Concept
+## The Diagnostic Sequence - Key Concept
 
 > **The single most important skill in network troubleshooting is knowing which test to run in which order. Testing from the inside out eliminates layers one at a time.**
 
@@ -56,7 +57,7 @@ Layer 1 — Local TCP/IP Stack
         │ PASS ↓
 
 Layer 2 — Own IP Address and NIC
-  ping 192.168.1.49  (your own IP)
+  ping 192.***.*.**  (your own IP)
   "Is the network card bound to an IP address and responding?"
         │ FAIL → IP not assigned, check DHCP or static config
         │ PASS ↓
@@ -82,9 +83,9 @@ Running this sequence takes under two minutes and tells you exactly where to loo
 
 ---
 
-### Phase 1 — Capture the Baseline Configuration
+### Phase 1 - Capture the Baseline Configuration
 
-**Step 1.1 — Run ipconfig /all and Record the Network Profile**
+**Step 1.1 - Run ipconfig /all and Record the Network Profile**
 
 Open **Command Prompt** and run:
 
@@ -92,35 +93,34 @@ Open **Command Prompt** and run:
 ipconfig /all
 ```
 
-This returns the full network configuration including IP address, MAC address, subnet, gateway, DNS, and DHCP lease details. Record these values before any changes are made — they are the baseline you compare against after a fault is introduced.
+This returns the full network configuration including IP address, MAC address, subnet, gateway, DNS and DHCP lease details. Record these values before any changes are made as they are the baseline you compare against after a fault is introduced.
 
-<img width="1018" alt="ipconfig /all output showing full network configuration" src="screenshots/01-ipconfig-all-output.png" />
+<img width="1018" height="624" alt="Run ipconfig all and Record the Network Profile" src="https://github.com/user-attachments/assets/b764c76e-2208-4612-9b75-5c2f650b5994" />
+
 
 Key values confirmed from this output:
 
 | Field | Value | Significance |
 |---|---|---|
 | Host Name | WIN11_CLIENT01 | Machine identity confirmed |
-| Primary DNS Suffix | mylab.local | Domain membership confirmed |
-| Physical Address | 00-0C-29-E1-CF-07 | MAC address of the NIC |
+| Primary DNS Suffix |[DOMAIN NAME] | Domain membership confirmed |
+| Physical Address | 00-**-**-E1-**-07 | MAC address of the NIC |
 | DHCP Enabled | Yes | IP assigned dynamically |
-| IPv4 Address | 192.168.1.49 | Client's current IP |
-| Default Gateway | 192.168.1.1 | Router / exit point for all traffic |
-| DHCP Server | 192.168.1.1 | Router is also providing DHCP leases |
-| DNS Servers | 192.168.1.10 | Domain Controller handles DNS |
+| IPv4 Address | 192.***.*.* | Client's current IP |
+| Default Gateway |  192.***.*.* | Router / exit point for all traffic |
+| DHCP Server |  192.***.*.* | Router is also providing DHCP leases |
+| DNS Servers | 192.***.*.** | Domain Controller handles DNS |
 
-> Recording ipconfig /all at the start of every network fault investigation is non-negotiable. Without the baseline, you cannot prove what changed or confirm what was restored. It also tells you immediately whether the machine has an IP at all — which rules out DHCP failure before you run a single ping.
-
+> Recording ipconfig /all at the start of every network fault investigation is non-negotiable. Without the baseline, you cannot prove what changed or confirm what was restored. It also tells you immediately whether the machine has an IP at all.
 ---
 
-### Phase 2 — Run the Layered Ping Sequence (Normal Connectivity)
+### Phase 2 - Run the Layered Ping Sequence (Normal Connectivity)
 
-**Step 2.1 — Ping the Loopback Address (Layer 1 — TCP/IP Stack)**
+**Step 2.1 - Ping the Loopback Address (Layer 1 - TCP/IP Stack)**
 
 ```cmd
 ping 127.0.0.1
 ```
-
 <img width="894" alt="ping 127.0.0.1 showing 4 successful replies" src="screenshots/02-ping-localhost-127.0.0.1.png" />
 
 > ✅ 4 out of 4 packets returned with sub-1ms response times. The local TCP/IP stack is functioning correctly. This test does not use the network adapter or any cables — it is purely internal to the operating system. A failure here would indicate a corrupted TCP/IP stack or disabled networking service.
