@@ -1,4 +1,4 @@
-# Lab 02: User Account Creation and Management
+#  User Account Creation and Management
 
 > **Author:** Nnamso Mkpong
 > 
