@@ -176,7 +176,8 @@ Click **Apply**, then **OK**.
 
 In ADUC, right-click **Users** → **New → Group**. Set the group name to **Department_Sales**, scope to **Global**, type to **Security**. Click **OK**.
 
-<img width="437" alt="New Object Group dialog — Department_Sales, Global, Security" src="screenshots/09-creating-department-sales-group.png" />
+<img width="437" height="378" alt="creating group" src="https://github.com/user-attachments/assets/66af0539-a361-49b9-b55e-3e2b608d035b" />
+
 
 ---
 
@@ -184,7 +185,6 @@ In ADUC, right-click **Users** → **New → Group**. Set the group name to **De
 
 Right-click **Department_Sales → Properties** to confirm it was created with Global scope and Security type.
 
-<img width="430" height="375" alt="06-creating-user-jayson-sule" src="https://github.com/user-attachments/assets/318c8bea-fe01-4988-89f9-136fca955efc" />
 
 ---
 
@@ -206,115 +206,124 @@ Click **Next**.
 
 ---
 
-**Step 4.4 — Set Password and Options**
+**Step 4.4 - Set Password and Options**
 
 Enter and confirm the initial password. Tick **Password never expires** for this lab environment. Click **Next**.
 
-<img width="433" alt="Password settings — Password never expires ticked" src="screenshots/07-user-password-settings.png" />
+<img width="433" height="376" alt="07-user-password-settings" src="https://github.com/user-attachments/assets/ff560eac-8798-4485-ada9-eaa194f9af98" />
+
+
+
 
 ---
 
-**Step 4.5 — Confirm and Finish User Creation**
+**Step 4.5 - Confirm and Finish User Creation**
 
-Review the summary. Confirm the logon name is `Jayson419@mylab.local`. Click **Finish**.
+Review the summary. Confirm the logon name is `Jayson419@[DOMAIN]`. Click **Finish**.
 
-<img width="437" alt="New Object User finish screen confirming Jayson Sule" src="screenshots/08-new-user-confirmed.png" />
 
 ---
 
-**Step 4.6 — Add Jayson Sule to Department_Sales**
+**Step 4.6 - Add Jayson Sule to Department_Sales**
 
 Right-click **Jayson Sule → Properties → Member Of tab → Add**. Type `Department_Sales`, click **Check Names**, then **OK**.
 
-<img width="454" alt="Searching for Department_Sales group in the directory" src="screenshots/11-search-department-sales.png" />
-
 Confirm **Department_Sales** now appears in the Member Of list alongside Domain Users.
 
-<img width="407" alt="Jayson Sule Member Of tab showing Department_Sales confirmed" src="screenshots/12-jayson-added-to-department-sales.png" />
+<img width="407" height="536" alt="User added to department sales" src="https://github.com/user-attachments/assets/dbe951a8-5847-410c-816a-454e4d310d9b" />
+
+
+
+
 
 ---
 
-**Step 4.7 — Create the Second Test User (Otobong Mkpong — Unauthorised)**
+**Step 4.7 - Create the Second Test User (Otobong Mkpong - Unauthorised)**
 
-Repeat the user creation steps to create **Otobong Mkpong** with logon name `Choko101@mylab.local`. This user is intentionally left out of Department_Sales to simulate an access denied scenario.
+Repeat the user creation steps to create **Otobong Mkpong** with logon name `Choko101@[DOMAIN]`. This user is intentionally left out of Department_Sales to simulate an access denied scenario.
 
-<img width="781" alt="ADUC view showing Otobong Mkpong selected for group membership testing" src="screenshots/16-working-on-otobong-in-aduc.png" />
+<img width="437" height="375" alt="cREATED NEW USER" src="https://github.com/user-attachments/assets/d5b07a26-559b-48e9-9071-91332becc06b" />
+
 
 ---
 
-### Phase 5 — Map the Network Drive on the Client
+### Phase 5 - Map the Network Drive on the Client
 
-**Step 5.1 — Open Map Network Drive in File Explorer**
+**Step 5.1 - Open Map Network Drive in File Explorer**
 
-On the Windows 11 client, open **File Explorer → This PC → Map network drive** (from the top menu or right-click). Set the following:
+On the Windows 11 client, open **File Explorer → This PC  →  Map network drive** (right-click on This PC to see Map network driver option). Set the following:
 
 | Field | Value |
 |---|---|
 | Drive letter | Z: |
-| Folder | \\\\192.168.1.10\\DepartmentShare |
-| Reconnect at sign-in | ✅ |
+| Folder | \\\\[DC_IP]\\DepartmentShare |
+| Reconnect at sign-in | check |
 
 Click **Finish**.
 
-<img width="610" alt="Map Network Drive dialog with Z: and UNC path entered" src="screenshots/13-map-network-drive.png" />
+<img width="610" height="449" alt="mAPPING DRIVE" src="https://github.com/user-attachments/assets/68eaddac-ded0-46da-b6b6-de21b1dbb920" />
+
 
 ---
 
-**Step 5.2 — Confirm the Drive Appears in This PC**
+**Step 5.2 - Confirm the Drive Appears in This PC**
 
 After mapping, open **This PC** and confirm the **DepartmentShare (\\\\192.168.1.10) (Z:)** drive appears under Network locations.
 
-<img width="584" alt="This PC showing DepartmentShare mapped as Z: under Network locations" src="screenshots/14-mapped-drive-confirmed.png" />
+<img width="584" height="306" alt="CONFIRMATION OF MAPPED NETWORKS" src="https://github.com/user-attachments/assets/5b32de7d-4a1b-4a60-b1f6-a485a90d6ddd" />
+
 
 ---
 
-### Phase 6 — Test Access: Authorised User
+### Phase 6 - Test Access: Authorised User
 
-**Step 6.1 — Log In as Jayson Sule and Write to the Share**
+**Step 6.1 - Log In as Jayson Sule and Write to the Share**
 
-Log into the client as `Jayson419@mylab.local`. Open the Z: drive and create a test file to confirm write access is working.
+Log into the client as `Jayson419@[DOMAIN]`. Open the Z: drive and create a test file to confirm write access is working.
 
-<img width="786" alt="DepartmentShare Z: drive open with test file created successfully" src="screenshots/19-file-created-in-share-verified.png" />
+<img width="786" height="594" alt="cREATED A FOLDER AND IT WORKED" src="https://github.com/user-attachments/assets/402eada4-c276-4616-9e48-5e0ade13d659" />
 
-> ✅ Jayson Sule is a member of Department_Sales. Both share and NTFS permissions allow the group to read and write. The file is created successfully. Access is confirmed.
 
----
-
-### Phase 7 — Test Access: Unauthorised User (Access Denied Simulation)
-
-**Step 7.1 — Attempt Access as Otobong Mkpong**
-
-Log into the client as `Choko101@mylab.local`. Attempt to open `\\192.168.1.10\Departmentshare\`.
-
-<img width="516" alt="Network Error — Windows cannot access the share, access denied" src="screenshots/15-access-denied-test.png" />
-
-> ✅ Otobong Mkpong is not a member of Department_Sales. The share permissions only grant access to that group. Windows returns: **"You do not have permission to access \\192.168.1.10\Departmentshare\"**. This is the expected and correct result.
+>  Jayson Sule is a member of Department_Sales. Both share and NTFS permissions allow the group to read and write. The file is created successfully. Access is confirmed.
 
 ---
 
-### Phase 8 — Resolve the Access Issue (Reinstate Group Membership)
+### Phase 7 - Test Access: Unauthorised User (Access Denied Simulation)
 
-**Step 8.1 — Add Otobong to Department_Sales**
+**Step 7.1 - Attempt Access as Otobong Mkpong**
+
+Log into the client as `Choko101@[DOMAIN]`. Attempt to open `\\[DC_IP]\Departmentshare\`.
+
+<img width="516" height="194" alt="PERMISION DENIED" src="https://github.com/user-attachments/assets/7dbc0717-5211-424f-b630-f977666d616f" />
+
+
+>  Otobong Mkpong is not a member of Department_Sales. The share permissions only grant access to that group. Windows returns: **"You do not have permission to access \\[DC_IP]\Departmentshare\"**. This is the expected and correct result.
+
+---
+
+### Phase 8 - Resolve the Access Issue (Reinstate Group Membership)
+
+**Step 8.1 - Add Otobong to Department_Sales**
 
 On the Domain Controller, open ADUC. Right-click **Otobong Mkpong → Properties → Member Of → Add**. Type `Department_Sales`, click **Check Names**, then **OK**.
 
-<img width="405" alt="Otobong Member Of — adding Department_Sales group" src="screenshots/17-adding-otobong-to-department-sales.png" />
+<img width="405" height="532" alt="ADDED OTONGOBONG TO DEPARTMENT SALES" src="https://github.com/user-attachments/assets/ab3165d8-4702-4c6e-b9fb-9730869c20ee" />
+
 
 ---
 
-**Step 8.2 — Confirm Group Membership**
+**Step 8.2  Confirm Group Membership**
 
 Back on the Member Of tab, **Department_Sales** now appears alongside Domain Users.
 
-<img width="405" alt="Otobong Member Of tab showing Department_Sales confirmed" src="screenshots/18-otobong-confirmed-in-group.png" />
-
-> After adding the user to the group, ask them to **log off and log back on**. Kerberos tickets are issued at login and contain group membership claims. A user who is added to a group mid-session must restart their session before the new membership is reflected in their access token.
-
+> After adding the user to the group, ask them to **log off and log back on** as any user who is added to a group mid-session must restart their session before the new membership is reflected.
 ---
 
-**Step 8.3 — Verify Access is Restored**
+**Step 8.3 - Verify Access is Restored**
 
 Log back in as Otobong Mkpong and attempt to open the share again. The drive opens successfully and the test file created by Jayson is visible, confirming that group membership was the only missing element.
+
+<img width="786" height="594" alt="cREATED A FOLDER AND IT WORKED" src="https://github.com/user-attachments/assets/ca2c1ded-7e1e-4743-9657-0ca6bb1bfa05" />
 
 ---
 
@@ -335,9 +344,9 @@ ISSUE REPORTED:
 INVESTIGATION:
   1. Confirmed share exists and is accessible on the server.
   2. Checked share permissions: Department_Sales group has
-     Change and Read — correctly configured.
+     Change and Read is correctly configured.
   3. Checked NTFS permissions: Department_Sales has Read,
-     Write, Read & Execute — correctly configured.
+     Write, Read & Execute is correctly configured.
   4. Checked Jayson Sule Member Of: Department_Sales present.
   5. Checked Otobong Mkpong Member Of: Department_Sales ABSENT.
   Root cause confirmed: missing group membership, not a
@@ -349,21 +358,21 @@ ACTIONS TAKEN:
   3. Set share permissions: Department_Sales — Change + Read.
   4. Set NTFS permissions: Department_Sales — Read, Write,
      Read & Execute, List folder contents.
-  5. Created user Jayson Sule (Jayson419@mylab.local).
-  6. Created user Otobong Mkpong (Choko101@mylab.local).
+  5. Created user Jayson Sule (Jayson419[DOMAIN]).
+  6. Created user Otobong Mkpong (Choko101[DOMAIN]).
   7. Added Jayson Sule to Department_Sales.
   8. Left Otobong out of Department_Sales to reproduce error.
-  9. Mapped Z: drive as \\192.168.1.10\DepartmentShare.
-  10. Tested with Jayson — access granted, file created. Pass.
-  11. Tested with Otobong — access denied. Pass (expected).
+  9. Mapped Z: drive as \\[DC_IP]\DepartmentShare.
+  10. Tested with Jayson - access granted, file created. Pass.
+  11. Tested with Otobong - access denied. Pass (expected).
   12. Added Otobong to Department_Sales in ADUC.
-  13. Asked user to log off and log back on (token refresh).
-  14. Retested with Otobong — access granted. Resolved.
+  13. Asked user to log off and log back on.
+  14. Retested with Otobong - access granted. Resolved.
 
 OUTCOME:
   Access restored. Root cause was missing group membership.
   Share and NTFS permissions were correctly configured
-  throughout. No permission changes were required — only a
+  throughout. No permission changes were required - only a
   group membership addition. Ticket resolved.
 ──────────────────────────────────────────────────────────────────
 ```
@@ -376,13 +385,13 @@ When an access denied error appears on a network share, the diagnosis follows a 
 
 | Step | Question to ask | Tool to use | If yes | If no |
 |---|---|---|---|---|
-| 1 | Can the server be reached at all? | `ping 192.168.1.10` | Move to step 2 | Fix network connectivity first |
-| 2 | Is the share visible on the network? | `net view \\192.168.1.10` | Move to step 3 | Check Advanced Sharing is enabled |
+| 1 | Can the server be reached at all? | `ping [DC_IP]` | Move to step 2 | Fix network connectivity first |
+| 2 | Is the share visible on the network? | `net view \\[DC_IP]` | Move to step 3 | Check Advanced Sharing is enabled |
 | 3 | Is the user in the correct group? | ADUC → User → Member Of | Move to step 4 | Add user to group, log off and on |
 | 4 | Does the group have share permissions? | Folder → Sharing → Advanced Sharing → Permissions | Move to step 5 | Add group with Change + Read |
 | 5 | Does the group have NTFS permissions? | Folder → Properties → Security | Access should work | Add group with appropriate NTFS rights |
 
-> In this lab the fault was at step 3. The share and NTFS permissions were correctly configured. Only the group membership was missing. This is the most common cause of access denied errors in Active Directory environments — the permissions are fine, but the user was never added to the group that holds them.
+> In this lab the fault was at step 3. The share and NTFS permissions were correctly configured. Only the group membership was missing. This is the most common cause of access denied errors in Active Directory environments - the permissions are fine, but the user was never added to the group that holds them.
 
 ---
 
@@ -396,7 +405,7 @@ When an access denied error appears on a network share, the diagnosis follows a 
 | Department_Sales granted Read, Write, Read & Execute on NTFS | Pass |
 | Department_Sales group created as Global Security in ADUC | Pass |
 | Jayson Sule created and added to Department_Sales | Pass |
-| Z: drive mapped successfully on client as \\\\192.168.1.10\\DepartmentShare | Pass |
+| Z: drive mapped successfully on client as \\\\[DC_IP]\\DepartmentShare | Pass |
 | Jayson Sule can open share and create files | Pass |
 | Otobong Mkpong receives access denied when not in group | Pass |
 | Otobong Mkpong access restored after adding to Department_Sales | Pass |
@@ -419,7 +428,7 @@ When an access denied error appears on a network share, the diagnosis follows a 
 
 ## Real World Relevance
 
-Permission errors on shared drives are among the most frequently raised tickets in any IT support environment that uses file servers or network shares. The pattern is almost always the same: a user changes roles, transfers departments, or is onboarded without full setup, and the group membership step is missed or forgotten.
+Permission errors on shared drives are among the most frequently raised tickets in any IT support environment that uses file servers or network shares. The pattern is almost always the same: a user changes roles, transfers departments or is onboarded without full setup and the group membership step is missed or forgotten.
 
 The correct response is never to assign permissions directly to the user account. Doing so creates a maintenance problem. When that user changes roles again, the individual permission entry stays behind. Over time, files and folders accumulate orphaned permission entries that are difficult to audit and impossible to manage at scale. Security group membership is the right mechanism because removing a user from a group immediately revokes all access that the group controls, across every resource it has been granted.
 
@@ -435,6 +444,6 @@ Understanding the relationship between share permissions and NTFS permissions is
 | Share visible but files cannot be written | NTFS permissions missing Write or Modify | Check Security tab on folder; add Write to group's NTFS entry |
 | Share not visible on the network | Advanced Sharing not enabled or share name wrong | Re-check Advanced Sharing is ticked and share name matches UNC path |
 | Drive maps but disconnects after reboot | Reconnect at sign-in not ticked during mapping | Re-map the drive with Reconnect at sign-in enabled |
-| User added to group but still denied | Token not refreshed — user still logged in with old token | Ask user to log off and log back on to refresh Kerberos ticket |
+| User added to group but still denied | Token not refreshed - user still logged in with old token | Ask user to log off and log back on to refresh Kerberos ticket |
 | Everyone group in share permissions | Overly permissive default not cleaned up | Remove Everyone; add only the appropriate security group |
-| NTFS permissions correct but still denied | Share permissions are more restrictive | Check share permissions — effective access is the most restrictive combination |
+| NTFS permissions correct but still denied | Share permissions are more restrictive | Check share permissions - effective access is the most restrictive combination |
