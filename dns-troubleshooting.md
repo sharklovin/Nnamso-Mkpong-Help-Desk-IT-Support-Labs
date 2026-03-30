@@ -1,17 +1,18 @@
-# Lab 07: DNS and Internet Connectivity Troubleshooting
+# DNS and Internet Connectivity Troubleshooting
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Network Diagnostics — DNS and Name Resolution
+> **Domain:** Network Diagnostics- DNS and Name Resolution
 >
-> **Environment:** Windows 11 Client (Virtualised, domain-joined to mylab.local)
+> **Environment:** Windows 11 Client 
+> 
 > **Completed:** March 2026
 
 ---
 
 ## Objective
 
-Separate a DNS name resolution failure from a general internet connectivity loss, prove the difference using command line tools, simulate the fault by setting an unreachable DNS server, and restore correct resolution by pointing the client back to a working DNS server.
+Separate a DNS name resolution failure from a general internet connectivity loss, prove the difference using command line tools, simulate the fault by setting an unreachable DNS server and restore correct resolution by pointing the client back to a working DNS server.
 
 ---
 
@@ -19,7 +20,7 @@ Separate a DNS name resolution failure from a general internet connectivity loss
 
 > **Ticket #0055 | Websites Not Loading — DNS or Internet Fault?**
 >
-> A user reports that websites are not opening in the browser. However, they mention that Microsoft Teams is still connected and receiving messages. IT support has been asked to investigate whether this is a full internet outage or a DNS-specific fault, identify the root cause, and restore normal browsing without restarting the machine or replacing any hardware.
+> A user reports that websites are not opening in the browser. However, they mention that Microsoft Teams is still connected and receiving messages. IT support has been asked to investigate whether this is a full internet outage or a DNS-specific fault, identify the root cause and restore normal browsing without restarting the machine or replacing any hardware.
 
 This scenario covers one of the most misunderstood faults in end user support. The symptom looks like the internet is down. The actual cause is that the machine can reach the internet by IP address but cannot translate domain names into addresses, because the DNS server it is pointing to is wrong or unreachable.
 
@@ -31,8 +32,8 @@ This scenario covers one of the most misunderstood faults in end user support. T
 |---|---|
 | **Client OS** | Windows 11 |
 | **Hostname** | WIN11_CLIENT01 |
-| **Client IP** | 192.168.1.49 |
-| **Default Gateway** | 192.168.1.1 |
+| **Client IP** | [CLIENT_IP] |
+| **Default Gateway** | [DEFAULT_GATEWAY] |
 | **Correct DNS** | 8.8.8.8 and 8.8.4.4 (Google Public DNS) |
 | **Incorrect DNS used to simulate fault** | 10.10.10.10 and 10.10.10.11 (non-existent) |
 | **Tools Used** | Command Prompt, nslookup, ping, Windows Network Settings |
@@ -40,13 +41,13 @@ This scenario covers one of the most misunderstood faults in end user support. T
 
 ---
 
-## Analyst Thinking — Why Websites Fail While Ping Still Works
+## Analyst Thinking: Why Websites Fail While Ping Still Works
 
 > **This is the most important concept in this lab and the one that separates a technician who understands networking from one who just follows steps.**
 
 When a user says the internet is down, the first question is: down for everything, or down for browsing?
 
-The browser needs two things to load a website. It needs to translate the domain name into an IP address using DNS, and then it needs a working internet path to reach that IP. If either one fails, the page does not load. But the failure looks the same to the user in both cases.
+The browser needs two things to load a website. It needs to translate the domain name into an IP address using DNS and then it needs a working internet path to reach that IP. If either one fails, the page does not load. But the failure looks the same to the user in both cases.
 
 The test that separates these two scenarios is `ping 8.8.8.8`. This skips DNS completely and sends a packet directly to Google's DNS server by its IP address. If it replies, the internet path is working. If it does not reply, the problem is further upstream.
 
@@ -76,19 +77,20 @@ This is why Teams can still work during a DNS fault. Teams connects to Microsoft
 
 ---
 
-### Phase 1 — Confirm Baseline: Everything Working
+### Phase 1 - Confirm Baseline: Everything Working
 
-**Step 1.1 — Verify Websites Load Normally**
+**Step 1.1 - Verify Websites Load Normally**
 
 Before any changes, confirm that browsing is working. Open the browser and navigate to google.com to establish a clean baseline.
 
-<img width="1019" alt="google.com loading normally at baseline" src="screenshots/01-baseline-google-loading.png" />
+<img width="1023" height="717" alt="Verify Websites Load Normally" src="https://github.com/user-attachments/assets/3479b7c3-cde0-462d-9b6d-7fafe7abcf6d" />
+
 
 > This baseline screenshot proves that the fault introduced later was deliberate and controlled, not pre-existing. Without a before state, there is no proof that anything changed.
 
 ---
 
-**Step 1.2 — Ping a Public IP to Confirm Internet Connectivity**
+**Step 1.2 - Ping a Public IP to Confirm Internet Connectivity**
 
 Open Command Prompt and run:
 
@@ -96,24 +98,26 @@ Open Command Prompt and run:
 ping 8.8.8.8
 ```
 
-<img width="777" alt="ping 8.8.8.8 returning 4/4 replies at baseline" src="screenshots/02-ping-8.8.8.8-baseline.png" />
+<img width="777" height="301" alt="Ping a Public IP to Confirm Internet Connectivity" src="https://github.com/user-attachments/assets/49962fbe-614a-4720-95b5-3df831209a48" />
 
-> ✅ 4 out of 4 packets returned. The internet path is confirmed working at baseline. Response times of 22–31ms are consistent with a healthy connection to a public server.
+
+>  4 out of 4 packets returned. The internet path is confirmed working at baseline. Response times of 22–31ms are consistent with a healthy connection to a public server.
 
 ---
 
-**Step 1.3 — Run nslookup to Confirm DNS Resolution Works**
+**Step 1.3 - Run nslookup to Confirm DNS Resolution Works**
 
 Run nslookup against two different domains to confirm that name resolution is functioning before any changes are made:
 
 ```cmd
-nslookup microsoft.com 8.8.8.8
-nslookup google.com 8.8.8.8
+nslookup microsoft.com 
+nslookup google.com 
 ```
 
-<img width="879" alt="nslookup microsoft.com and google.com both resolving correctly at baseline" src="screenshots/03-nslookup-baseline-working.png" />
+<img width="763" height="472" alt="Run nslookup to Confirm DNS Resolution Works" src="https://github.com/user-attachments/assets/f949a26d-f929-461a-8cf1-b31a713a7c07" />
 
-Both domains resolve successfully through 8.8.8.8. The DNS server identifies itself as `dns.google` and returns valid IP addresses for both targets. Baseline DNS is confirmed healthy.
+
+Both domains resolve successfully. The DNS server identifies itself as `dns.google` and returns valid IP addresses for both targets. Baseline DNS is confirmed healthy.
 
 | Domain queried | Result | IP returned |
 |---|---|---|
@@ -122,9 +126,9 @@ Both domains resolve successfully through 8.8.8.8. The DNS server identifies its
 
 ---
 
-### Phase 2 — Introduce the Fault (Wrong DNS Server)
+### Phase 2 - Introduce the Fault (Wrong DNS Server)
 
-**Step 2.1 — Change DNS to a Non-Existent Server**
+**Step 2.1 - Change DNS to a Non-Existent Server**
 
 Navigate to **Settings → Network and Internet → Ethernet → DNS server assignment → Edit**. Change DNS from Automatic or 8.8.8.8 to manual entries of `10.10.10.10` and `10.10.10.11`. These addresses do not exist on the network and will not respond to any queries.
 
@@ -134,25 +138,28 @@ Navigate to **Settings → Network and Internet → Ethernet → DNS server assi
 
 ---
 
-**Step 2.2 — Attempt to Browse with Wrong DNS**
+**Step 2.2 - Attempt to Browse with Wrong DNS**
 
 With the incorrect DNS saved, attempt to open google.com and microsoft.com in the browser.
 
 **google.com:**
 
-<img width="1019" alt="Browser showing DNS_PROBE_FINISHED_BAD_CONFIG on google.com" src="screenshots/05-browser-error-google.png" />
+<img width="1019" height="720" alt="05- Attempt to Browse with Wrong DNS GOOGLE" src="https://github.com/user-attachments/assets/f4321025-f7ee-412f-8d69-a08c5b72a3fb" />
+
 
 **microsoft.com:**
 
-<img width="1019" alt="Browser showing DNS_PROBE_FINISHED_BAD_CONFIG on microsoft.com" src="screenshots/06-browser-error-microsoft.png" />
+<img width="1019" height="718" alt="06 - Attempt to Browse with Wrong DNS MICROSOFT" src="https://github.com/user-attachments/assets/8259c271-1048-4b44-8fb8-a156e690ee4a" />
 
-> ❌ Both sites fail with the same error: **DNS_PROBE_FINISHED_BAD_CONFIG** and the message that the server IP address could not be found. This error code is Edge's way of reporting a DNS failure specifically, not a general network failure. The browser itself is telling the technician where to look.
+
+
+> Both sites fail with the same error: **DNS_PROBE_FINISHED_BAD_CONFIG** and the message that the server IP address could not be found. This error code is Edge's way of reporting a DNS failure specifically, not a general network failure. 
 
 The fact that both sites fail with the same error and the same error code confirms this is not a site-specific outage. It is a client-side DNS configuration problem.
 
 ---
 
-**Step 2.3 — Ping 8.8.8.8 to Prove Internet Is Still Up**
+**Step 2.3 - Ping 8.8.8.8 to Prove Internet Is Still Up**
 
 While the browser is failing on all sites, run:
 
@@ -160,32 +167,32 @@ While the browser is failing on all sites, run:
 ping 8.8.8.8
 ```
 
-<img width="706" alt="ping 8.8.8.8 returning 4/4 replies even while browser cannot load pages" src="screenshots/07-ping-still-works-during-dns-fault.png" />
+<img width="706" height="301" alt="Ping 8 8 8 8 to Prove Internet Is Still Up" src="https://github.com/user-attachments/assets/73ea3d1d-2436-437e-967c-b238cf54b6b7" />
 
-> ✅ 4 out of 4 packets returned. The internet path is completely intact. The machine is sending and receiving data to and from the internet without any issues. Only domain name resolution has failed.
 
-This is the key diagnostic moment. The internet is up. DNS is broken. These are two separate things.
+> 4 out of 4 packets returned. The internet path is completely intact. The machine is sending and receiving data to and from the internet without any issues. Only domain name resolution has failed. This means the internet is up. DNS is broken. These are two separate things.
 
 ---
 
-**Step 2.4 — Run nslookup to Confirm DNS Resolution Has Failed**
+**Step 2.4 - Run nslookup to Confirm DNS Resolution Has Failed**
 
 ```cmd
 nslookup microsoft.com
 nslookup google.com
 ```
 
-<img width="1010" alt="nslookup microsoft.com and google.com both timing out with wrong DNS server" src="screenshots/08-nslookup-failed-wrong-dns.png" />
+<img width="1010" height="647" alt="08- Run nslookup to Confirm DNS Resolution Has Failed" src="https://github.com/user-attachments/assets/cb48a468-c1ce-46ba-9d4c-967bc3ff8b12" />
 
-> ❌ Both queries return: **DNS request timed out. timeout was 2 seconds.** The server shown is `10.10.10.10` which is listed as `Unknown` because it does not exist. No IP addresses are returned for either domain. Name resolution is completely broken.
+
+> Both queries return: **DNS request timed out. timeout was 2 seconds.** The server shown is `10.10.10.10` which is listed as `Unknown` because it does not exist. No IP addresses are returned for either domain. Name resolution is completely broken.
 
 This output confirms the root cause. The DNS server the machine is querying does not exist. Every domain lookup fails. The internet path works but without name resolution, the browser cannot function.
 
 ---
 
-### Phase 3 — Flush the DNS Cache
+### Phase 3 - Flush the DNS Cache
 
-**Step 3.1 — Run ipconfig /flushdns**
+**Step 3.1 - Run ipconfig /flushdns**
 
 Before restoring the DNS settings, flush the local DNS cache to clear any stale or incorrect entries that may have been stored from previous lookups:
 
@@ -201,42 +208,45 @@ Windows IP Configuration
 Successfully flushed the DNS Resolver Cache.
 ```
 
-> Flushing the cache forces the machine to perform fresh DNS lookups rather than returning cached results. In a real fault this step matters because a machine may have a cached incorrect result stored from before the fault was introduced. Restoring the DNS server without flushing the cache could mean the machine continues returning stale results for a short period.
+> Flushing the cache forces the machine to perform fresh DNS lookups rather than returning cached results. Restoring the DNS server without flushing the cache could mean the machine continues returning stale results for a short period.
 
 ---
 
-### Phase 4 — Restore the Correct DNS Server
+### Phase 4 - Restore the Correct DNS Server
 
 **Step 4.1 — Set DNS Back to 8.8.8.8 and 8.8.4.4**
 
 Return to **Settings → Network and Internet → Ethernet → DNS server assignment → Edit**. Set Preferred DNS to `8.8.8.8` and Alternate DNS to `8.8.4.4`. Click Save.
 
-<img width="691" alt="DNS settings restored to 8.8.8.8 and 8.8.4.4" src="screenshots/09-dns-restored-correct-settings.png" />
+<img width="691" height="668" alt="09 - Restore the Correct DNS Server" src="https://github.com/user-attachments/assets/bfd2e0b0-828f-49ca-8502-344bb9a8defd" />
 
-> In a domain environment the correct DNS server would typically be the Domain Controller IP, not a public resolver. In this lab the machine is not relying on AD name resolution for external browsing, so Google Public DNS is the correct choice. On a domain-joined machine you would restore the DC IP and verify both internal and external resolution.
+
+> In a domain environment the correct DNS server would typically be the Domain Controller IP, not a public resolver.
 
 ---
 
-**Step 4.2 — Run nslookup Again to Confirm Resolution Is Restored**
+**Step 4.2 - Run nslookup Again to Confirm Resolution Is Restored**
 
 ```cmd
 nslookup microsoft.com
 nslookup google.com
 ```
 
-<img width="763" alt="nslookup microsoft.com and google.com both resolving correctly after restore" src="screenshots/10-nslookup-restored-working.png" />
+<img width="763" height="472" alt="10 - Run nslookup to Confirm DNS Resolution Works" src="https://github.com/user-attachments/assets/9b94fb7c-4d14-449d-9ed1-bf85cf78490d" />
 
-> ✅ Both domains resolve immediately. The server is identified as `dns.google` at `8.8.8.8`. IP addresses are returned for both targets. DNS is fully restored.
+
+> Both domains resolve immediately. The server is identified as `dns.google` at `8.8.8.8`. IP addresses are returned for both targets. DNS is fully restored.
 
 ---
 
-**Step 4.3 — Confirm Websites Load in the Browser**
+**Step 4.3 - Confirm Websites Load in the Browser**
 
 Open microsoft.com in the browser to confirm end-to-end browsing has been restored.
 
-<img width="1013" alt="microsoft.com loading fully after DNS restored" src="screenshots/11-microsoft-loading-restored.png" />
+<img width="1013" height="718" alt="11 - Confirm Websites Load in the Browser" src="https://github.com/user-attachments/assets/119a231c-a817-48dc-9375-4a6d9703fe92" />
 
-> ✅ microsoft.com loads fully. The DNS lookup succeeded, the browser retrieved the correct IP address, and the page content loaded. The fault is resolved.
+
+>  microsoft.com loads fully. The DNS lookup succeeded, the browser retrieved the correct IP address, and the page content loaded. The fault is resolved.
 
 ---
 
