@@ -18,7 +18,7 @@ Separate a DNS name resolution failure from a general internet connectivity loss
 
 ## Business Scenario
 
-> **Ticket #0055 | Websites Not Loading — DNS or Internet Fault?**
+> **Ticket #0055 | Websites Not Loading - DNS or Internet Fault?**
 >
 > A user reports that websites are not opening in the browser. However, they mention that Microsoft Teams is still connected and receiving messages. IT support has been asked to investigate whether this is a full internet outage or a DNS-specific fault, identify the root cause and restore normal browsing without restarting the machine or replacing any hardware.
 
