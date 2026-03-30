@@ -12,28 +12,7 @@ The repository contains 20 labs covering the skills that appear most consistentl
 
 ## Labs
 
- Lab | Core Skill |
-|---|---|---|
-| Password reset and account unlock | Active Directory basics |
-| Create, disable, and update user accounts | Identity administration |
-| Join a Windows device to a domain | Windows and AD |
-| Map shared drives and fix permissions | File access support |
-| Printer install and troubleshooting | Peripheral support |
-| Network troubleshooting with ipconfig and ping | Basic networking |
-| DNS and internet connectivity troubleshooting | Name resolution |
-| Microsoft Outlook profile repair | Office application support |
-| Teams audio and sign in troubleshooting | Microsoft 365 user support |
-| OneDrive sync issue resolution | Cloud file sync |
-| Remote support session workflow | Remote assistance |
-| Install and remove business software | Software support |
-| Windows update failure troubleshooting | OS maintenance |
-| Event Viewer and startup issue analysis | System diagnostics |
-| Blue screen and driver rollback | Advanced desktop support |
-| Disk cleanup and low storage remediation | Performance support |
-| Create and close tickets with SLA notes | Ticket handling |
-| Intune device enrollment and policy check | Modern endpoint management |
-| BitLocker recovery and device encryption | Endpoint security support |
-| New user onboarding and offboarding checklist | End to end support process |
+> Lab List is still Pending and will be Updated when the 20 Day IT Support and Help Desk Scenarios Challenge is completed. 
 
 ---
 
