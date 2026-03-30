@@ -12,7 +12,7 @@ The repository contains 20 labs covering the skills that appear most consistentl
 
 ## Labs
 
-| Lab | Core Skill |
+ Lab | Core Skill |
 |---|---|---|
 | Password reset and account unlock | Active Directory basics |
 | Create, disable, and update user accounts | Identity administration |
