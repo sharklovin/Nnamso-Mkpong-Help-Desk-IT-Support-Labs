@@ -1,10 +1,11 @@
-# Lab 09: Teams Audio and Microphone Troubleshooting
+# Teams Audio and Microphone Troubleshooting
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Microsoft 365 — Teams Audio Support
+> **Domain:** Microsoft 365 - Teams Audio Support
 >
 > **Environment:** Windows 11 Client, Microsoft Teams (Personal and Work accounts)
+> 
 > **Completed:** April 2026
 
 ---
@@ -17,11 +18,11 @@ Diagnose and resolve a Teams microphone failure by identifying where in the audi
 
 ## Business Scenario
 
-> **Ticket #0057 | Teams Audio Fault — Remote User Cannot Be Heard in Meetings**
+> **Ticket #0057 | Teams Audio Fault - Remote User Cannot Be Heard in Meetings**
 >
 > A remote employee reports that they can hear other participants in Microsoft Teams meetings but nobody can hear them. They have joined the call correctly and their Teams status shows as connected. The issue has been present since their last Windows update. IT support has been asked to investigate whether the fault is in the Teams device configuration, the Windows audio settings, or the Windows privacy settings that control microphone access.
 
-This is one of the most disruptive audio faults in a remote working environment. The affected user is present in the meeting, can see and hear others, but is completely invisible from an audio perspective. Meetings cannot proceed effectively and the user is unable to contribute or be heard. Fast, structured diagnosis is essential because every minute of delay has a direct business impact.
+This is one of the most disruptive audio faults in a remote working environment. The affected user is present in the meeting, can see and hear others but is completely invisible from an audio perspective. Meetings cannot proceed effectively and the user is unable to contribute or be heard. Fast, structured diagnosis is essential because every minute of delay has a direct business impact.
 
 ---
 
@@ -38,14 +39,14 @@ This is one of the most disruptive audio faults in a remote working environment.
 
 ---
 
-## Audio Troubleshooting Stack — Key Concept
+## Audio Troubleshooting Stack - Key Concept
 
 > **Teams audio faults almost always exist in one of three layers. Checking them in order identifies the cause without guesswork.**
 
 When a user cannot be heard in Teams, the fault is in one of three places. These must be checked from the bottom up because each layer depends on the one below it.
 
 ```
-Layer 3 — Teams Application Level
+Layer 3 - Teams Application Level
   Settings → Devices → Microphone
   "Does Teams know which microphone to use?"
        │ Wrong device selected or no device shown → change selection
@@ -60,7 +61,7 @@ Layer 2 — Windows Audio Device Level
        │ Enabled and default → move down
        ▼
 
-Layer 1 — Windows Privacy Level
+Layer 1 - Windows Privacy Level
   Settings → Privacy & Security → Microphone
   "Is Teams allowed to access the microphone at all?"
        │ Teams toggle Off → turn On
@@ -75,13 +76,14 @@ A Teams microphone problem is rarely a Teams problem. It is almost always a Wind
 
 ---
 
-### Phase 1 — Record the Baseline Configuration
+### Phase 1 - Record the Baseline Configuration
 
-**Step 1.1 — Check Windows Sound Settings**
+**Step 1.1 - Check Windows Sound Settings**
 
 Open **Settings → System → Sound** and confirm both the output and input devices are correctly assigned. This records the working state before any changes are made and confirms the hardware is present.
 
-<img width="762" alt="Windows Sound settings showing Speakers as default output and Microphone as default input" src="screenshots/01-windows-sound-baseline.png" />
+<img width="762" height="722" alt="01 Windows sound Baseline" src="https://github.com/user-attachments/assets/f8d3aea7-22c6-4ae0-bb9b-0ddc6728c738" />
+
 
 Key values confirmed at baseline:
 
@@ -89,33 +91,34 @@ Key values confirmed at baseline:
 |---|---|---|
 | Output device | Speakers (High Definition Audio Device) | Audio playback working |
 | Input device | Microphone (High Definition Audio Device) | Microphone present and set as default |
-| Volume | 67 | Adequate level for calls |
 
-> Both devices are present and set as default. The audio hardware is installed and Windows recognises it. If either device were missing here, the investigation would shift to Device Manager to check for driver issues before proceeding.
 
----
-
-**Step 1.2 — Check Teams Device Settings**
-
-Open Teams, click the three dots at the top right, go to **Settings → Devices**, and confirm the Speaker and Microphone dropdowns show the correct devices.
-
-<img width="1024" alt="Teams Settings Devices screen showing correct speaker and microphone selected" src="screenshots/02-teams-devices-settings-baseline.png" />
-
-> ✅ Teams has the correct devices selected. Speaker is set to **Speakers (High Definition Audio Device)** and Microphone is set to **Microphone (High Definition Audio Device)**. At baseline, if the user were on a call right now, audio would be working in both directions.
-
-> This screen is the first place most users look and the first place a technician should check. If Teams shows a different device or shows no device, that is the fault — change the dropdown and test. If the correct device is shown here and audio still fails, the fault is lower in the stack.
+> Both devices are present and set as default. The audio hardware is installed and Windows recognises it. 
 
 ---
 
-### Phase 2 — Simulate the Fault (Disable the Microphone)
+**Step 1.2 - Check Teams Device Settings**
 
-**Step 2.1 — Disable the Microphone in Windows Recording Devices**
+Open Teams, click the three dots at the top right, go to **Settings → Devices** and confirm the Speaker and Microphone dropdowns show the correct devices.
+
+<img width="1024" height="717" alt="02 Teams device settings basline" src="https://github.com/user-attachments/assets/f13e9feb-11e6-4a8d-a73f-88331a970c08" />
+
+
+>  Teams has the correct devices selected. Speaker is set to **Speakers (High Definition Audio Device)** and Microphone is set to **Microphone (High Definition Audio Device)**. At baseline, if the user were on a call right now, audio would be working in both directions.
+
+
+---
+
+### Phase 2 - Simulate the Fault (Disable the Microphone)
+
+**Step 2.1 - Disable the Microphone in Windows Recording Devices**
 
 Navigate to **Settings → System → Sound → More sound settings**. Click the **Recording** tab. Right-click the Microphone entry and select **Disable**. Click OK.
 
-<img width="765" alt="Windows Sound Recording tab showing Microphone device as Disabled" src="screenshots/03-microphone-disabled-fault-simulation.png" />
+<img width="765" height="721" alt="03 Disable the Microphone" src="https://github.com/user-attachments/assets/d67b3e1a-dda5-4b17-9f4a-88a4264884c3" />
 
-> ❌ The Microphone entry now shows **Disabled** with a downward arrow icon. Windows has removed this device from the list of available recording inputs. Teams will no longer be able to access it regardless of what is selected in Teams settings. This is the fault state.
+
+>  The Microphone entry now shows **Disabled** with a downward arrow icon. Windows has removed this device from the list of available recording inputs and Teams will no longer be able to access it regardless of what is selected in Teams settings. At this point it is at the fault state.
 
 This simulates what happens when:
 - A user or policy has accidentally disabled the device
@@ -124,7 +127,7 @@ This simulates what happens when:
 
 ---
 
-**Step 2.2 — What the User Experiences During This Fault**
+**Step 2.2 - What the User Experiences During This Fault**
 
 With the microphone disabled at the Windows level, when the user joins a Teams call:
 
