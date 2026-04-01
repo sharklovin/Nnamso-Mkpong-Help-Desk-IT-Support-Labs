@@ -101,7 +101,8 @@ Right-click the OneDrive icon in the system tray and select **Pause syncing**. S
 
 After pausing, return to the OneDrive folder in File Explorer.
 
-<img width="1027" height="537" alt="03-  Pause OneDrive Sync" src="https://github.com/user-attachments/assets/3b1e2fc4-f129-47d6-b5b0-2ab4c958a14e" />
+<img width="1027" height="537" alt="03-  Pause OneDrive Sync" src="https://github.com/user-attachments/assets/09f44d87-2f7a-499c-8e92-75e0b496858a" />
+
 
 
 
@@ -116,7 +117,8 @@ Open TestFile.txt, make a change and save it. This represents what a user does w
 
 Navigate into the Sync Test folder to observe the status of the file.
 
-<img width="1022" height="533" alt="04 -Pause OneDrive Sync" src="https://github.com/user-attachments/assets/93004474-dc68-477c-914c-2da899616fd0" />
+<img width="1022" height="533" alt="04 -Pause OneDrive Sync" src="https://github.com/user-attachments/assets/03865af4-bee9-4f59-8111-3fc84f21ecb0" />
+
 
 
 > The breadcrumb still shows **Paused**. TestFile.txt now shows the **sync pending** icon: a circular arrow indicating that changes are queued but not yet uploading. The file has been modified locally but the cloud version is out of date. If the user checked OneDrive on another device or in the browser right now, they would not see their latest changes.
