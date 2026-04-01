@@ -84,7 +84,8 @@ Inside the OneDrive root, create a new folder named **Sync Test**. After creatio
 
 Open the Sync Test folder and create a text file named **TestFile.txt**. Confirm the file shows a green tick in the Status column within a few seconds of saving.
 
-<img width="1027" height="537" alt="03-  Pause OneDrive Sync" src="https://github.com/user-attachments/assets/f65677bc-a844-42b5-b929-f855f5be337b" />
+<img width="1023" height="534" alt="02 - signed in and created a Txt file TestFile" src="https://github.com/user-attachments/assets/1e883366-8de4-4d3a-a793-304831397d2b" />
+
 
 
 
