@@ -167,7 +167,7 @@ This approach reassures the user, sets a clear expectation for resolution time, 
 
 ---
 
-## Escalation Path — When Sync Cannot Be Fixed at First Line
+## Escalation Path - When Sync Cannot Be Fixed at First Line
 
 Not every sync issue is resolved by resuming the client. The following scenarios require escalation beyond first-line support.
 
