@@ -136,54 +136,45 @@ As shown below, with the microphone disabled at the Windows level, when the user
 - The mic button in the call toolbar appears functional but produces no input
 - There is no error message or warning visible to the user
 
-<img width="1017" height="708" alt="04 What the User Experiences During This Fault" src="https://github.com/user-attachments/assets/45a5003d-4975-463b-86f1-21f88389e99b" />
+<img width="1017" height="708" alt="04 What the User Experiences During This Fault" src="https://github.com/user-attachments/assets/db9c57b7-bbbb-4d94-8c69-bb6bf0fead90" />
+
 
 This is why this fault is consistently misdiagnosed. The fault is invisible at the application layer and only visible in the Windows Recording tab.
 
 ---
 
-### Phase 3 - Check the Privacy Settings
+### Phase 3 - Re-enable the Microphone and Validate
 
-**Step 3.1 - Verify Microphone Access in Privacy and Security**
-
-Navigate to **Settings → Privacy & Security → Microphone**. Confirm that **Microphone access** is toggled On at the system level and that **Microsoft Teams** specifically shows as On in the per-app list.
-
-<img width="724" alt="Privacy and Security Microphone settings showing system access On and Teams access On" src="screenshots/04-privacy-microphone-access-teams-on.png" />
-
-> ✅ Microphone access is enabled at the system level and Teams specifically has microphone permission granted. The last accessed timestamp confirms Teams was actively using the microphone as recently as 4/1/2026 at 3:06 PM.
-
-> This screen matters because it represents a separate permission layer from the device state. A microphone can be enabled in the Recording tab but blocked from Teams by a privacy setting. In that scenario the device shows as available but Teams cannot access it. Checking this in every audio fault investigation takes 30 seconds and eliminates a category of fault.
-
----
-
-### Phase 4 — Re-enable the Microphone and Validate
-
-**Step 4.1 — Re-enable the Microphone in Windows Recording**
+**Step 3.1 - Re-enable the Microphone in Windows Recording**
 
 Return to **Settings → System → Sound → More sound settings → Recording tab**. Right-click the Microphone entry and select **Enable**. Confirm it returns to the active state and set as default if needed. Click OK.
 
-**Step 4.2 — Confirm Teams Detects the Device**
+<img width="775" height="717" alt="05Re-enable the Microphone" src="https://github.com/user-attachments/assets/3adaa9aa-752e-473b-9454-b95fa7c087a4" />
+
+**Step 3.2 - Confirm Teams Detects the Device**
 
 Return to Teams **Settings → Devices** and confirm the Microphone dropdown still shows the correct device. If Teams had detected the device disappearing during the fault, it may have cleared the selection or defaulted to another device. Verify and correct if needed.
 
-**Step 3.1 - Verify Microphone Access in Privacy and Security**
+**Step 3.3 - Verify Microphone Access in Privacy and Security**
 
 Navigate to **Settings → Privacy & Security → Microphone**. Confirm that **Microphone access** is toggled On at the system level and that **Microsoft Teams** specifically shows as On in the per-app list.
 
-<img width="724" alt="Privacy and Security Microphone settings showing system access On and Teams access On" src="screenshots/04-privacy-microphone-access-teams-on.png" />
-
-> ✅ Microphone access is enabled at the system level and Teams specifically has microphone permission granted. The last accessed timestamp confirms Teams was actively using the microphone as recently as 4/1/2026 at 3:06 PM.
-
-> This screen matters because it represents a separate permission layer from the device state. A microphone can be enabled in the Recording tab but blocked from Teams by a privacy setting. In that scenario the device shows as available but Teams cannot access it. Checking this in every audio fault investigation takes 30 seconds and eliminates a category of fault.
+<img width="724" height="681" alt="06 Privacy window" src="https://github.com/user-attachments/assets/cc4f7190-ddd6-4dd5-9611-fb54d5621861" />
 
 
-**Step 4.3 — Join a Test Call and Confirm Audio**
+>  Microphone access is enabled at the system level and Teams specifically has microphone permission granted. The last accessed timestamp confirms Teams was actively using the microphone as recently as 4/1/2026 at 3:06 PM.
 
-Join a Teams test call or an active call to confirm the microphone is working. The call toolbar confirms audio is active when the Mic button is visible and interactive.
+> A microphone can be enabled in the Recording tab but blocked from Teams by a privacy setting. In that scenario the device shows as available but Teams cannot access it. Checking this in every audio fault investigation takes 30 seconds and eliminates a category of fault.
 
-<img width="1010" alt="Teams active call showing Mic button visible and call timer running at 00:34" src="screenshots/05-teams-call-active-audio-working.png" />
 
-> ✅ The Teams call is active at 00:34 elapsed. The Mic button is present in the toolbar and interactive. The other participant's avatar is visible in the main view, confirming the call is connected and audio is flowing in both directions. The fault is resolved.
+**Step 3.4 - ReConfirm Audio**
+
+The call toolbar confirms audio is active when the Mic button is visible and interactive.
+
+<img width="1010" height="711" alt="07 working now" src="https://github.com/user-attachments/assets/5606ffb8-5635-4ef2-b3d9-c3bc1039d161" />
+
+
+>  The Teams call is active at 00:34 elapsed. The Mic button is present in the toolbar and interactive. The other participant's avatar is visible in the main view, confirming the call is connected and audio is flowing in both directions. The fault is resolved.
 
 ---
 
@@ -193,7 +184,7 @@ Join a Teams test call or an active call to confirm the microphone is working. T
 
 When a remote user cannot be heard in a meeting, the impact is immediate and visible to everyone in the call. The meeting may need to be paused, repeated, or rescheduled. The affected user is effectively excluded from the discussion until the issue is resolved, regardless of how prepared they are or how important their contribution is.
 
-For a technician supporting remote workers, the ability to diagnose and resolve this type of fault quickly and confidently — ideally before the meeting starts or within the first few minutes of a call — directly protects the user's ability to work and the organisation's time. Speed matters here in a way that it does not in most other support calls.
+For a technician supporting remote workers, the ability to diagnose and resolve this type of fault quickly and confidently - ideally before the meeting starts or within the first few minutes of a call - directly protects the user's ability to work and the organisation's time. Speed matters here in a way that it does not in most other support calls.
 
 The fastest path to resolution is to follow the three-layer check in order: Teams device settings, Windows recording device state, and Windows privacy settings. In most cases the fault is found at layer two or three within two minutes.
 
