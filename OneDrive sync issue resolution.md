@@ -133,7 +133,8 @@ Their file is safe on the local machine has not been lost. It is simply waiting 
 
 Right-click the OneDrive icon in the system tray and select **Resume syncing**. Return to the OneDrive root folder in File Explorer.
 
-<img width="1019" height="537" alt="05 - folder after starting sync" src="https://github.com/user-attachments/assets/ccef113f-b596-449c-a123-9563d34ddf4e" />
+<img width="1019" height="537" alt="05 - Resume OneDrive Sync" src="https://github.com/user-attachments/assets/91fc4981-4510-4757-8785-9ab0a1386821" />
+
 
 
 >  The breadcrumb has returned to **OneDrive**. The Sync Test folder shows a green tick. Sync has resumed and the client has processed the queued changes. The folder-level sync is confirmed healthy.
