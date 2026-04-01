@@ -31,7 +31,7 @@ This is one of the most frequently raised Microsoft 365 support calls in organis
 | Component | Detail |
 |---|---|
 | **Client OS** | Windows 11 |
-| **OneDrive Account** | Microsoft Personal Account (Nnamso — Personal) |
+| **OneDrive Account** | Microsoft Personal Account (Nnamso - Personal) |
 | **Test Folder Created** | Sync Test |
 | **Test File Created** | TestFile.txt |
 | **Tools Used** | File Explorer, OneDrive sync client, taskbar system tray |
