@@ -1,8 +1,8 @@
-# Lab 12: Install and Remove Business Software
+# Install and Remove Business Software
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Windows 11 — Software Deployment and Version Management
+> **Domain:** Windows 11 - Software Deployment and Version Management
 >
 > **Environment:** Windows 11 Client, Adobe Acrobat Reader (Approved), Adobe Acrobat 5.0 (Legacy Conflict)
 >
@@ -12,7 +12,7 @@
 
 ## Objective
 
-Install an approved software package on a Windows 11 workstation, verify the correct version number, simulate a version conflict by installing a legacy application alongside it, identify the conflict using the Windows Program Compatibility Assistant and the Installed Apps list, remove the conflicting version using Apps and Features, and confirm the approved version opens successfully without errors.
+Install an approved software package on a Windows 11 workstation, verify the correct version number, simulate a version conflict by installing a legacy application alongside it, identify the conflict using the Windows Program Compatibility Assistant and the Installed Apps list, remove the conflicting version using Apps and Features and confirm the approved version opens successfully without errors.
 
 ---
 
@@ -31,42 +31,9 @@ This is a standard software deployment and remediation task. In practice it cove
 | Component | Detail |
 |---|---|
 | **Client OS** | Windows 11 |
-| **Approved Application** | Adobe Acrobat Reader — Version 2025.001.21288 (64-bit) |
+| **Approved Application** | Adobe Acrobat Reader - Version 2025.001.21288 (64-bit) |
 | **Conflicting Application** | Adobe Acrobat 5.0 / Acrobat Reader 5.1 (legacy, 2002) |
 | **Tools Used** | File Explorer, Adobe Acrobat Installer, Settings → Apps → Installed Apps, Program Compatibility Assistant, Help → About |
-
----
-
-## Software Deployment Diagnostic Stack — Key Concept
-
-> **Software version conflicts almost always exist in one of three states. Checking them in order identifies the cause without guesswork.**
-
-When a user reports that an application is not working correctly or when IT needs to confirm an approved version is active, the fault or gap is in one of three places.
-
-```
-Layer 3 — Application Level
-  Help → About (inside the application)
-  "Is the correct version number confirmed?"
-       │ Wrong version shown → remove and reinstall
-       │ Correct version shown → document and close
-       ▼
-
-Layer 2 — Windows Installed Apps Level
-  Settings → Apps → Installed Apps
-  "What is actually installed on this machine?"
-       │ Conflicting or legacy version present → uninstall it
-       │ Approved version missing → install it
-       │ Approved version present → move up to Layer 3
-       ▼
-
-Layer 1 — Windows Compatibility Layer
-  Program Compatibility Assistant (fires on launch)
-  "Is the installed software compatible with this version of Windows?"
-       │ Warning fires → software is legacy and cannot run correctly
-       │ No warning → application is compatible with Windows 11
-```
-
-A software conflict is rarely visible to the user until they try to open the application. The conflict exists at the Windows level and only surfaces when a launch is attempted. Knowing to check the Installed Apps list and the compatibility warning before contacting the user saves unnecessary back-and-forth.
 
 ---
 
@@ -74,116 +41,107 @@ A software conflict is rarely visible to the user until they try to open the app
 
 ---
 
-### Phase 1 — Install the Approved Version
+### Phase 1 - Install the Approved Version
 
-**Step 1.1 — Download the Approved Installer**
+**Step 1.1 - Download the Approved Installer**
 
 Navigate to the official Adobe download page and download the latest Adobe Acrobat Reader installer. Save it to the Downloads folder and confirm the file is present before running it.
 
-![01 Approved installer in Downloads folder](screenshots/01_download_installer.png)
+<img width="1000" height="709" alt="01 Download installer" src="https://github.com/user-attachments/assets/80b70cae-ecc6-4a8c-b45f-2a6932ec88f1" />
 
-Key values confirmed at this step:
-
-| Item | Value | Significance |
-|---|---|---|
-| Filename | Reader_en_install | Official Adobe installer naming convention |
-| File size | 1.56 MB | Matches expected installer size for the stub installer |
-| Date | 4/2/2026 1:10 PM | Confirms the download is current |
-
-> The installer is present in the Downloads folder and ready to run. Always confirm the source and file size before executing an installer on a managed workstation.
-
+> The installer is present in the Downloads folder and ready to run.
 ---
 
-**Step 1.2 — Run the Installer and Monitor Progress**
+**Step 1.2 - Run the Installer and Monitor Progress**
 
 Double-click the installer to launch it. The Adobe Acrobat Reader Installer window displays installation progress. Monitor it through to completion and do not interrupt it.
 
-![02 Installation in progress at 80 percent](screenshots/02_installation_in_progress.png)
+<img width="658" height="452" alt="02 Installation in progress" src="https://github.com/user-attachments/assets/afd2fa57-8555-497e-9384-543fd042d415" />
+
 
 > The installation is running. The progress bar at 80% confirms the installer is active and writing files. This stage typically takes 1–3 minutes depending on the machine.
 
 ---
 
-**Step 1.3 — Confirm Installation Complete**
+**Step 1.3 - Confirm Installation Complete**
 
 Wait for the progress bar to reach 100% and the status message to change to "Installation complete."
 
-![03 Installation complete at 100 percent](screenshots/03_installation_complete.png)
+<img width="668" height="454" alt="03 Installation complete" src="https://github.com/user-attachments/assets/f8b1b420-af0c-4c6b-bf41-766972ad85de" />
+
 
 > Installation is confirmed complete. The checkmark icon and "Installation complete" message confirm the installer finished without error. The approved application is now present on the machine.
 
 ---
 
-### Phase 2 — Verify the Version Number
+### Phase 2 - Verify the Version Number
 
-**Step 2.1 — Confirm the Version via Help → About**
+**Step 2.1 - Confirm the Version via Help → About**
 
 Open Adobe Acrobat Reader. Navigate to **Menu → Help → About Adobe Acrobat Reader** and confirm the version string matches the approved version required by IT.
 
-![04 Version check — version string confirmed](screenshots/04_version_check_annotated.png)
+<img width="581" height="511" alt="04 version check" src="https://github.com/user-attachments/assets/b9538f8a-8a5d-44b1-9cf1-f140d95f0a17" />
 
-> **Highlighted:** The version string `2025.001.21288 | 64-bit` is confirmed. This is the approved version. Record this string in the ticket note and in any software inventory log before closing this phase.
 
-Version confirmed:
-
-```
-Adobe Acrobat Reader
-Continuous Release | Version 2025.001.21288 | 64-bit
-```
-
-> Checking the version immediately after installation prevents a category of error where the installer silently deployed a different version due to a cached package or a broken download. Five seconds at this step can save an hour of investigation later.
+> **Highlighted:** The version string `2025.001.21288 | 64-bit` is confirmed. This is the approved version. String recorded  in the ticket note and in any software inventory log before closing this phase
 
 ---
 
-### Phase 3 — Simulate the Version Conflict
+### Phase 3 - Simulate the Version Conflict
 
-**Step 3.1 — Download the Legacy Installer**
+**Step 3.1 - Download the Legacy Installer**
 
-To simulate a real-world conflict, download Adobe Acrobat Reader 5.1 (a legacy version from 2002). This represents a machine where a previous technician, a user, or a legacy system migration left an old version present alongside the new one.
+To simulate a real-world conflict, download Adobe Acrobat Reader 5.1 which is a legacy version from 2002. This represents a machine where a previous technician, a user, or a legacy system migration left an old version present alongside the new one.
 
-![05 Legacy acrobat51 installer in Downloads folder](screenshots/05_legacy_installer_downloaded.png)
+<img width="1007" height="544" alt="05 Legacy installer " src="https://github.com/user-attachments/assets/fad7a096-074c-4742-a212-10858a57f137" />
+
 
 > The legacy installer `acrobat51` (13,415 KB) is present in the Downloads folder. The file size difference from the approved installer (1.56 MB vs 13 MB) is also a useful indicator — full legacy installers are typically much larger than modern stub installers.
 
 ---
 
-**Step 3.2 — Run the Legacy Installer**
+**Step 3.2 - Run the Legacy Installer**
 
 Launch the legacy installer. The setup wizard uses the classic Windows XP-era interface, which is itself a diagnostic signal that this software predates modern Windows.
 
-![06 Acrobat Reader 5.1 setup wizard](screenshots/06_legacy_setup_wizard.png)
+<img width="472" height="360" alt="06 Legacy wizard" src="https://github.com/user-attachments/assets/61e45777-0a6d-49d8-b426-51bcb865a488" />
 
-> The setup wizard confirms this is **Reader 5.1**. The visual design of the installer — the layout, fonts, and artwork — immediately identifies this as a legacy application. In a real scenario, a technician would not install this. This step simulates what was already present on the machine before the support call.
+
+> The setup wizard confirms this is **Reader 5.1**. In a real scenario, a technician would not install this. This step simulates what was already present on the machine before the support call.
 
 ---
 
-**Step 3.3 — Legacy Installation Completes**
+**Step 3.3 - Legacy Installation Completes**
 
 The legacy installer completes and presents a dialog confirming Acrobat Reader is installed.
 
-![07 Legacy Acrobat Reader installation confirmation](screenshots/07_legacy_install_confirmation.png)
+<img width="298" height="146" alt="07 legacy install confimation" src="https://github.com/user-attachments/assets/05fed8fc-b723-4618-9d41-be727c556f37" />
 
-> The confirmation dialog reads "Thank you for choosing Acrobat Reader." The legacy version is now present on the machine alongside the approved version. This is the conflict state.
+
+> The confirmation dialog reads "Thank you for choosing Acrobat Reader." The legacy version is now present on the machine alongside the approved version.
+
 
 ---
 
-**Step 3.4 — Confirm the Conflict State**
+**Step 3.4 - Confirm the Conflict State**
 
 The legacy splash screen confirms the installed version is **Acrobat 5.1.0** from September 17, 2002. Both versions are now installed on the same Windows 11 machine simultaneously.
 
-![08 Acrobat Reader 5.1 splash screen — conflict state confirmed](screenshots/08_legacy_splash_screen.png)
+<img width="499" height="374" alt="08 Legacy splash screen" src="https://github.com/user-attachments/assets/2bb53df9-c4ba-48b3-a502-483bc0a489cb" />
 
-> The splash screen date of **9/17/2002** confirms this is a 23-year-old application running on Windows 11. Two desktop icons are now present — one for the approved version and one for the legacy version. The user may not know which one to open, or may be opening the wrong one habitually.
+
+> The splash screen date of **9/17/2002** confirms this is a 23-year-old application running on Windows 11. Two desktop icons are now present which is one for the approved version and one for the legacy version. The user may not know which one to open, or may be opening the wrong one habitually.
 
 ---
 
-### Phase 4 — Identify the Conflict
+### Phase 4 - Identify the Conflict
 
-**Step 4.1 — Observe the Windows Compatibility Warning**
+**Step 4.1 - Observe the Windows Compatibility Warning**
 
 When a user or technician attempts to open Adobe Acrobat 5 on Windows 11, the **Program Compatibility Assistant** fires automatically.
 
-![09 Windows 11 Program Compatibility Assistant warning](screenshots/09_compatibility_warning_annotated.png)
+<img width="1022" height="716" alt="09 Compatibility Warning" src="https://github.com/user-attachments/assets/2b6060c2-d0c7-4f0f-8b3d-b342fbf2b537" />
+
 
 > **Highlighted:**
 > - The application title confirms **Adobe Acrobat 5** is the app generating the warning.
@@ -201,13 +159,14 @@ This warning fires because:
 
 ---
 
-### Phase 5 — Remove the Conflicting Version
+### Phase 5 - Remove the Conflicting Version
 
-**Step 5.1 — Uninstall via Settings → Apps → Installed Apps**
+**Step 5.1 - Uninstall via Settings → Apps → Installed Apps**
 
 Navigate to **Settings → Apps → Installed Apps**. Locate **Adobe Acrobat 5.0** in the list. Click the three-dot menu (⋮) and select **Uninstall**.
 
-![10 Uninstalling Adobe Acrobat 5.0 via Installed Apps](screenshots/10_uninstall_legacy_version_annotated.png)
+<img width="775" height="722" alt="10 unistalllegacy version" src="https://github.com/user-attachments/assets/9b84e791-cc28-4ba7-a319-3b018e80cf40" />
+
 
 > **Highlighted:**
 > - **Adobe Acrobat 5.0** (dated 4/2/2026) is the conflicting version to be removed.
@@ -216,23 +175,23 @@ Navigate to **Settings → Apps → Installed Apps**. Locate **Adobe Acrobat 5.0
 
 > Always use Apps and Features or the system uninstaller to remove applications. Never delete application folders manually. Manual deletion leaves behind registry entries, file associations, and start menu shortcuts that can cause ongoing conflicts and break the Windows installer database for that application.
 
-**Step 5.2 — Confirm Removal**
+**Step 5.2 - Confirm Removal**
 
 After the uninstaller completes, refresh the Installed Apps list and confirm Adobe Acrobat 5.0 no longer appears. Only the approved Adobe Acrobat (64-bit) entry should remain.
 
 ---
 
-### Phase 6 — Confirm the Approved Version is Running
+### Phase 6 - Confirm the Approved Version is Running
 
-**Step 6.1 — Launch the Approved Version**
+**Step 6.1 - Launch the Approved Version**
 
 Open Adobe Acrobat Reader from the Start Menu or the desktop shortcut. Confirm it opens to the home screen without any Program Compatibility Assistant warning, error dialog, or application crash.
 
-![11 Approved version opens — fault resolved](screenshots/11_approved_version_running_annotated.png)
+<img width="1027" height="766" alt="11 Approved version running" src="https://github.com/user-attachments/assets/51e0a951-6a7f-4721-bdd0-e02f10177a76" />
 
-> **Highlighted:** The "Welcome to Acrobat Reader" home screen loads correctly. No compatibility warning appeared. No error dialog appeared. The approved version is the only Adobe Reader present on the machine and it is functioning correctly.
+> **Highlighted:** The "Welcome to Acrobat Reader" home screen loads correctly. No compatibility warning appeared or error dialog appeared. The approved version is the only Adobe Reader present on the machine and it is functioning correctly.
 
-**Step 6.2 — Reconfirm the Version**
+**Step 6.2 - Reconfirm the Version**
 
 As a final check, navigate to **Help → About** one more time and confirm the version string has not changed. This verifies that removing the legacy version did not affect the approved installation.
 
@@ -241,7 +200,7 @@ Adobe Acrobat Reader
 Continuous Release | Version 2025.001.21288 | 64-bit
 ```
 
-> The version string is unchanged. The approved version is installed, confirmed, and running. The task is complete.
+> The version string is unchanged. The approved version is installed, confirmed and running. The task is complete.
 
 ---
 
