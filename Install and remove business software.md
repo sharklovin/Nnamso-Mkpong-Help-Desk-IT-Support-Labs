@@ -254,9 +254,9 @@ See `TICKET-0042-software-deployment.md` in this folder.
 
 Software version management is one of the most common categories of help desk work in any organisation using a managed Windows environment. Users may have legacy applications left over from system migrations, self-installed personal versions that conflict with IT-approved software, or packages that were deployed correctly but never updated after a company-wide version change.
 
-A technician who approaches software deployment with a structured diagnostic mindset — confirm what is installed, verify the version, identify and remove conflicts, confirm the resolved state — will resolve these calls quickly and create a clean audit trail. A technician who assumes that because the application opens it is the correct version, or who reinstalls without first auditing what is already present, will create additional problems and generate follow-up tickets.
+A technician who approaches software deployment with a structured diagnostic mindset which confirm what is installed, verify the version, identify and remove conflicts, confirm the resolved state  will resolve these calls quickly and create a clean audit trail. A technician who assumes that because the application opens it is the correct version, or who reinstalls without first auditing what is already present, will create additional problems and generate follow-up tickets.
 
-Software deployment and version management also appears consistently in technical interview scenarios for help desk and desktop support roles. Candidates who can describe the relationship between the Installed Apps list, the Program Compatibility Assistant, and the Help → About version check demonstrate that they think in layers and understand why each step matters — which is the diagnostic mindset employers in IT support are looking for.
+Software deployment and version management also appears consistently in technical interview scenarios for help desk and desktop support roles. Candidates who can describe the relationship between the Installed Apps list, the Program Compatibility Assistant, and the Help → About version check demonstrate that they think in layers and understand why each step matters - which is the diagnostic mindset employers in IT support are looking for.
 
 ---
 
