@@ -1,8 +1,8 @@
-# Lab 14: Event Viewer and Startup Issue Analysis
+# Event Viewer and Startup Issue Analysis
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Windows 11 — Startup Performance and Event Log Diagnostics
+> **Domain:** Windows 11 - Startup Performance and Event Log Diagnostics
 >
 > **Environment:** Windows 11 Client, Task Manager Startup Apps, Event Viewer, Windows Application Log
 >
@@ -20,7 +20,7 @@ Use Task Manager's Startup Apps tab and Windows Event Viewer to investigate a sl
 
 > **Ticket #0061 | Slow Boot and Application Crash at Login — Remote Workstation**
 >
-> A user reports that their PC takes too long to boot and that an application crashes at login every morning. The issue has been present since a recent software installation. IT support has been asked to investigate whether the fault is in the startup configuration, a failing application process, or a deeper system event that requires escalation.
+> A user reports that their PC takes too long to boot and that an application crashes at login every morning. The issue has been present since a recent software installation. IT support has been asked to investigate whether the fault is in the startup configuration, a failing application process or a deeper system event that requires escalation.
 
 Slow boot complaints are among the most frequently raised tickets in any managed Windows environment. They are often treated as low priority until they accumulate into lost productivity across multiple users. In this case, an application crash at login elevates the ticket because it means the user cannot start their primary workflow until the issue is resolved. Speed and structured diagnosis are essential.
 
@@ -33,40 +33,9 @@ Slow boot complaints are among the most frequently raised tickets in any managed
 | **Client OS** | Windows 11 |
 | **Primary Tool** | Task Manager → Startup Apps tab |
 | **Log Tool** | Event Viewer → Windows Logs → Application |
-| **Key Event** | Event ID 4096 — VBScriptDeprecationAlert — Source: VBScriptDeprecationAlert |
+| **Key Event** | Event ID 4096 - VBScriptDeprecationAlert — Source: VBScriptDeprecationAlert |
 | **Identified Process** | BlueStacksServices.exe (106 child processes) |
 | **Computer Name** | Shark007 |
-
----
-
-## Startup Diagnostic Stack — Key Concept
-
-> **Slow boot and login crash faults sit in one of three layers. Checking them in order avoids guesswork and produces evidence you can put in a ticket.**
-
-```
-Layer 3 — Event Viewer / Log Level
-  Windows Logs → Application and System
-  "Is there a logged warning or error around the time of the fault?"
-       │ Warning or Error found → record Event ID, source, timestamp
-       │ No events → move down to confirm the device layer
-       ▼
-
-Layer 2 — Task Manager Startup Level
-  Task Manager → Startup Apps tab
-  "Which processes are running at boot and what is their startup impact?"
-       │ High-impact non-essential process found → disable it
-       │ Unknown process with no publisher → investigate further
-       │ All items essential → move down to hardware layer
-       ▼
-
-Layer 1 — BIOS / Hardware Level
-  Last BIOS time (visible at top of Startup Apps tab)
-  "Is the BIOS itself taking unusually long before Windows even starts?"
-       │ BIOS time > 10 seconds → check firmware settings, fast boot
-       │ BIOS time normal → fault is in the Windows startup layer above
-```
-
-In this lab the fault is confirmed at Layer 2 and corroborated at Layer 3. The BIOS time is used as a baseline measurement to compare before and after the fix.
 
 ---
 
@@ -74,70 +43,43 @@ In this lab the fault is confirmed at Layer 2 and corroborated at Layer 3. The B
 
 ---
 
-### Phase 1 — Record the Startup Baseline
+### Phase 1 - Record the Startup Baseline
 
-**Step 1.1 — Open Task Manager and Navigate to Startup Apps**
+**Step 1.1 - Open Task Manager and Navigate to Startup Apps**
 
-Open Task Manager using `Ctrl + Shift + Esc` or right-click the taskbar and select Task Manager. Click **Startup apps** in the left navigation panel.
+Open Task Manager using `Ctrl + Shift + Esc`. Click **Startup apps** in the left navigation panel.
 
 Review the full list, paying attention to three columns: **Status**, **Startup impact**, and the presence of a **Publisher** field. Items with no publisher and high startup impact are the first candidates to investigate.
-
-![01 Startup apps baseline — full list with BlueStacks and impact ratings](screenshots/01_startup_apps_baseline_annotated.png)
-
-Key values recorded at baseline:
-
-| Process | Publisher | Status | Startup Impact | Risk Assessment |
-|---|---|---|---|---|
-| BlueStacksServices.exe (88) | — | Enabled | **High** | Android emulator — non-essential for business use |
-| CCXProcess.exe (6) | — | Enabled | **High** | Adobe Creative Cloud — review if not needed at login |
-| AdobeCollabSync.exe (3) | — | Enabled | High | Adobe sync service — non-essential at boot |
-| fdm.exe | — | Disabled | High | Download manager — already disabled |
-| OneDrive.exe (2) | — | Disabled | High | Cloud sync — already disabled |
-| Microsoft Edge | Microsoft Corporation | Enabled | Low | Browser — low risk |
-
-> **Highlighted:** BlueStacksServices.exe is running with 88 child processes at baseline and is flagged as High startup impact. It has no registered publisher, which means it is not a Microsoft or business-critical process. It is the primary suspect for the slow boot complaint.
-
-> The Last BIOS time shown is **12.4 seconds**. This is the hardware handoff time before Windows even begins loading. Record this value to compare after the fix.
+<img width="854" height="581" alt="01 Open start up" src="https://github.com/user-attachments/assets/fe279b3f-2582-424f-a189-0225fc2ee1d6" />
 
 ---
 
-### Phase 2 — Disable the Non-Essential Startup Item
+### Phase 2 - Disable the Non-Essential Startup Item
 
-**Step 2.1 — Disable BlueStacksServices.exe**
+**Step 2.1 - Disable BlueStacksServices.exe**
 
-Right-click **BlueStacksServices.exe** in the Startup Apps list and select **Disable**, or select it and click the **Disable** button in the toolbar. Confirm the status column changes from Enabled to Disabled.
+Right-click **BlueStacksServices.exe** in the Startup Apps list and select **Disable** or select it and click the **Disable** button in the toolbar. Confirm the status column changes from Enabled to Disabled.
 
-![02 BlueStacks disabled — status confirmed and BIOS time recorded](screenshots/02_bluestacks_disabled_annotated.png)
+<img width="1363" height="721" alt="02 Blue stack disable " src="https://github.com/user-attachments/assets/b6826733-c119-4fb0-88a0-62771b49b34a" />
+
 
 > **Highlighted:**
-> - **BlueStacksServices.exe** now shows **Disabled** status. The child process count has increased to 106 in this view, confirming it had already been accumulating processes in the background. Disabling it at startup prevents this at next boot.
-> - The **Last BIOS time is 15.3 seconds** in this screenshot — note that BIOS time can vary slightly between boots due to hardware checks. The meaningful comparison will be Windows load time after reboot, not the BIOS time alone.
-
-Additional items visible in the post-disable list that have been set to Disabled to further reduce startup load:
-
-| Process | Action Taken | Reason |
-|---|---|---|
-| BlueStacksServices.exe (106) | **Disabled** | Android emulator — confirmed non-essential |
-| Spotify Launcher / Spotify | Disabled | Personal application — not required at login |
-| Microsoft Teams | Disabled | User does not use Teams at startup — can launch manually |
-| Telegram Desktop | Disabled | Personal messaging — not required at login |
-| Xbox | Disabled | Gaming platform — not required on business workstation |
-| Microsoft 365 Copilot | Disabled | AI overlay — not required at login |
-| Phone Link | Disabled | Personal device sync — not required at login |
+> - **BlueStacksServices.exe** now shows **Disabled** status.
 
 > Disabling non-essential startup items does not uninstall the applications. They remain available to launch manually. The change only prevents them from consuming system resources during the boot and login sequence.
 
 ---
 
-### Phase 3 — Investigate in Event Viewer
+### Phase 3 - Investigate in Event Viewer
 
-**Step 3.1 — Open Event Viewer and Navigate to Application Log**
+**Step 3.1 - Open Event Viewer and Navigate to Application Log**
 
 Open Event Viewer by pressing `Windows + R`, typing `eventvwr.msc`, and pressing Enter. In the left panel, expand **Windows Logs** and click **Application**. Sort by **Date and Time** descending to show the most recent events first.
 
 Filter for **Warning** and **Error** level events around the time of the reported fault. Look specifically for events that reference the processes identified in the Startup Apps tab.
 
-![03 Event Viewer — VBScriptDeprecationAlert warning linked to BlueStacksServices.exe](screenshots/03_event_viewer_vbscript_warning_annotated.png)
+<img width="1108" height="698" alt="03_event_viewer_vbscript_warning_annotated" src="https://github.com/user-attachments/assets/a9373421-29ac-49fb-ad9d-fd7f1622752a" />
+
 
 Event recorded:
 
@@ -154,7 +96,7 @@ Event recorded:
 | **OpCode** | Info |
 
 > **Highlighted:**
-> - The **Warning row** in the Application log identifies source `VBScriptDeprecationAlert` with Event ID 4096 — logged at the exact time the user reported the crash at login.
+> - The **Warning row** in the Application log identifies source `VBScriptDeprecationAlert` with Event ID 4096 - logged at the exact time the user reported the crash at login.
 > - The **ProcessTree field** in the event detail is the critical evidence. It reads:
 >   `cscript.exe;BlueStacksServices.exe;explorer.exe;userinit.exe;winlogon.exe`
 >   This confirms that BlueStacksServices.exe spawned a VBScript process (`cscript.exe`) during the Windows login sequence (`winlogon.exe → userinit.exe → explorer.exe`). That script triggered a deprecation warning in Windows 11, which caused the crash at login.
@@ -164,15 +106,15 @@ Event recorded:
 
 ---
 
-### Phase 4 — Validate and Document
+### Phase 4 - Validate and Document
 
-**Step 4.1 — Reboot and Compare**
+**Step 4.1 - Reboot and Compare**
 
 After disabling BlueStacksServices.exe and the other non-essential items, reboot the machine. On the next boot, re-open Task Manager → Startup Apps and note the Last BIOS time. Then observe the time from the login screen to a fully usable desktop.
 
 Expected result: The Windows load time after login should be noticeably shorter with BlueStacks and other high-impact items disabled. The application crash at login should not recur because BlueStacksServices.exe is no longer running at startup and therefore cannot invoke the VBScript process during winlogon.
 
-**Step 4.2 — Confirm No Recurrence in Event Viewer**
+**Step 4.2 - Confirm No Recurrence in Event Viewer**
 
 After the reboot, return to Event Viewer → Application log and confirm that no new VBScriptDeprecationAlert events appear in the log around the time of the new boot. The absence of Event ID 4096 after the fix is part of the validation evidence.
 
@@ -245,5 +187,5 @@ A technician who can open Event Viewer, read a ProcessTree, identify a deprecate
 | Event ID 4096 — VBScriptDeprecationAlert | Application using deprecated VBScript during startup | Identify process in ProcessTree → disable startup item → notify vendor |
 | Startup Apps shows process with 100+ children | Background service spawning worker threads | Investigate process → disable if non-essential → monitor for recurrence |
 | Last BIOS time above 15 seconds | Slow firmware initialisation | Check BIOS fast boot setting; review connected peripherals at POST |
-| Event Viewer Application log shows 17,000+ events | Normal accumulation over time — not itself a fault | Filter by level Warning/Error and time range to find relevant events |
+| Event Viewer Application log shows 17,000+ events | Normal accumulation over time - not itself a fault | Filter by level Warning/Error and time range to find relevant events |
 | Disabling startup item does not reduce boot time | Multiple other high-impact items still running | Review full startup list; disable all non-essential High/Medium items |
