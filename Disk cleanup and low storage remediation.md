@@ -18,7 +18,7 @@ Investigate and resolve a low disk space complaint on a Windows 11 workstation w
 
 ## Business Scenario
 
-> **Ticket #0078 | Low Disk Space — Outlook Sending Failures and Windows Update Blocked**
+> **Ticket #0078 | Low Disk Space - Outlook Sending Failures and Windows Update Blocked**
 >
 > A user reports that Microsoft Outlook keeps failing when trying to send and receive email and that Windows Update has not completed successfully in several weeks. Both failures are being caused by the same underlying condition: the system drive is critically low on free space. The user has not made any deliberate changes to the machine and does not know why the drive is full. IT support has been asked to investigate the storage breakdown, recover space safely without removing any user data or business applications and confirm the system returns to a healthy state.
 
