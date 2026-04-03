@@ -18,7 +18,7 @@ Use Task Manager's Startup Apps tab and Windows Event Viewer to investigate a sl
 
 ## Business Scenario
 
-> **Ticket #0061 | Slow Boot and Application Crash at Login — Remote Workstation**
+> **Ticket #0061 | Slow Boot and Application Crash at Login - Remote Workstation**
 >
 > A user reports that their PC takes too long to boot and that an application crashes at login every morning. The issue has been present since a recent software installation. IT support has been asked to investigate whether the fault is in the startup configuration, a failing application process or a deeper system event that requires escalation.
 
