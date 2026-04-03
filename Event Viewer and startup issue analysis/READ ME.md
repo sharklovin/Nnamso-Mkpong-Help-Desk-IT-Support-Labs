@@ -110,9 +110,9 @@ After the reboot, return to Event Viewer → Application log and confirm that no
 
 > **Slow boot complaints have a compounding effect on productivity that is not always visible in a single ticket.**
 
-A user who waits an extra 3–5 minutes every morning to reach a usable desktop loses approximately 15–25 minutes per week to a fault that takes under 10 minutes to diagnose and fix. When an application crash at login is added to this, the user may be losing a further 5–10 minutes attempting to relaunch their tools before they can begin any work.
+A user who waits an extra 3 to 5 minutes every morning to reach a usable desktop loses approximately 15 - 25 minutes per week to a fault that takes under 10 minutes to diagnose and fix. When an application crash at login is added to this, the user may be losing a further 5–10 minutes attempting to relaunch their tools before they can begin any work.
 
-For a technician, this category of ticket is high-value because the fix is fast, the evidence is clear, and the result is immediately visible to the user. Startup performance issues that are resolved quickly and documented properly also feed into asset management — if multiple machines are running the same non-essential high-impact startup items, a single policy change across the fleet can eliminate the entire ticket category.
+For a technician, this category of ticket is high-value because the fix is fast, the evidence is clear, and the result is immediately visible to the user. Startup performance issues that are resolved quickly and documented properly also feed into asset management - if multiple machines are running the same non-essential high-impact startup items, a single policy change across the fleet can eliminate the entire ticket category.
 
 The Event Viewer confirmation in this lab adds an additional dimension. Event ID 4096 with a BlueStacks ProcessTree is not just a startup performance issue — it is evidence of a deprecated scripting method being invoked during the Windows login sequence, which in future Windows 11 updates may become a hard block rather than a warning. Documenting it now and raising it to the appropriate team prevents a future escalation.
 
@@ -128,15 +128,15 @@ See `TICKET-0061-startup-event-analysis.md` in this folder.
 
 | Check | Result |
 |---|---|
-| Startup Apps baseline recorded — BlueStacksServices.exe identified as High impact | Pass |
+| Startup Apps baseline recorded - BlueStacksServices.exe identified as High impact | Pass |
 | Last BIOS time recorded at baseline: 12.4 seconds | Pass |
 | BlueStacksServices.exe disabled in Startup Apps | Pass |
 | Additional non-essential items disabled (Spotify, Teams, Telegram, Xbox, etc.) | Pass |
-| Event Viewer opened — Application log reviewed | Pass |
-| Event ID 4096 — VBScriptDeprecationAlert — recorded at 4/3/2026 3:30:20 PM | Pass |
+| Event Viewer opened - Application log reviewed | Pass |
+| Event ID 4096 - VBScriptDeprecationAlert - recorded at 4/3/2026 3:30:20 PM | Pass |
 | ProcessTree in event detail confirms BlueStacksServices.exe as root cause | Pass |
 | Root cause confirmed at two diagnostic layers: Startup impact + Event log | Pass |
-| Reboot scheduled — startup time and crash recurrence to be verified | Pending reboot |
+| Reboot scheduled - startup time and crash recurrence to be verified | Pending reboot |
 
 ---
 
