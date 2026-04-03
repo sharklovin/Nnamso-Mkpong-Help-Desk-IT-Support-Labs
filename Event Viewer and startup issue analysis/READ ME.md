@@ -131,12 +131,11 @@ See `TICKET-0061-startup-event-analysis.md` in this folder.
 | Startup Apps baseline recorded - BlueStacksServices.exe identified as High impact | Pass |
 | Last BIOS time recorded at baseline: 12.4 seconds | Pass |
 | BlueStacksServices.exe disabled in Startup Apps | Pass |
-| Additional non-essential items disabled (Spotify, Teams, Telegram, Xbox, etc.) | Pass |
 | Event Viewer opened - Application log reviewed | Pass |
 | Event ID 4096 - VBScriptDeprecationAlert - recorded at 4/3/2026 3:30:20 PM | Pass |
 | ProcessTree in event detail confirms BlueStacksServices.exe as root cause | Pass |
 | Root cause confirmed at two diagnostic layers: Startup impact + Event log | Pass |
-| Reboot scheduled - startup time and crash recurrence to be verified | Pending reboot |
+| Reboot scheduled - startup time and crash recurrence to be verified | Pass |
 
 ---
 
@@ -158,7 +157,7 @@ See `TICKET-0061-startup-event-analysis.md` in this folder.
 
 Startup performance investigation is a daily task in any environment where users work on managed Windows machines. The combination of Task Manager startup analysis and Event Viewer review represents the entry-level diagnostic toolkit that every help desk technician needs to be fluent with.
 
-The specific scenario in this lab — BlueStacksServices.exe generating VBScriptDeprecationAlert warnings during winlogon — is also directly relevant to real-world fleet management. Android emulators like BlueStacks are frequently installed by users on personal machines that are also used for work, or on shared machines in environments without strict application control. They run significant background services that consume memory and CPU at startup without the user being aware of it, and they use scripting methods that Windows 11 is actively moving away from.
+The specific scenario in this lab - BlueStacksServices.exe generating VBScriptDeprecationAlert warnings during winlogon — is also directly relevant to real-world fleet management. Android emulators like BlueStacks are frequently installed by users on personal machines that are also used for work, or on shared machines in environments without strict application control. They run significant background services that consume memory and CPU at startup without the user being aware of it, and they use scripting methods that Windows 11 is actively moving away from.
 
 A technician who can open Event Viewer, read a ProcessTree, identify a deprecated scripting invocation during winlogon, connect it to a startup item in Task Manager, and document the finding with an Event ID and timestamp is demonstrating diagnostic fluency that goes beyond checkbox troubleshooting. This is the level of documentation and reasoning that senior technicians and hiring managers look for in IT support candidates.
 
