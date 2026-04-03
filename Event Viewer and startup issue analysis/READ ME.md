@@ -81,27 +81,12 @@ Filter for **Warning** and **Error** level events around the time of the reporte
 <img width="1108" height="698" alt="03 Event manager warning for blue stack" src="https://github.com/user-attachments/assets/23c11d4b-79d4-4af2-9f1d-082ce6ddf44d" />
 
 
-
-Event recorded:
-
-| Field | Value |
-|---|---|
-| **Log Name** | Application |
-| **Source** | VBScriptDeprecationAlert |
-| **Event ID** | 4096 |
-| **Level** | Warning |
-| **Date and Time** | 4/3/2026 3:30:20 PM |
-| **Task Category** | None |
-| **Keywords** | Classic |
-| **Computer** | Shark007 |
-| **OpCode** | Info |
-
 > **Highlighted:**
 > - The **Warning row** in the Application log identifies source `VBScriptDeprecationAlert` with Event ID 4096 - logged at the exact time the user reported the crash at login.
 > - The **ProcessTree field** in the event detail is the critical evidence. It reads:
 >   `cscript.exe;BlueStacksServices.exe;explorer.exe;userinit.exe;winlogon.exe`
 >   This confirms that BlueStacksServices.exe spawned a VBScript process (`cscript.exe`) during the Windows login sequence (`winlogon.exe → userinit.exe → explorer.exe`). That script triggered a deprecation warning in Windows 11, which caused the crash at login.
-> - **Event ID 4096 from VBScriptDeprecationAlert** means Windows 11 is warning that VBScript — a scripting language being phased out — was invoked by BlueStacks during startup. In newer Windows 11 builds, this can cause the invoking process to fail.
+> - **Event ID 4096 from VBScriptDeprecationAlert** means Windows 11 is warning that VBScript — a scripting language being phased out / was invoked by BlueStacks during startup. In newer Windows 11 builds, this can cause the invoking process to fail.
 
 > This event is the log-level confirmation that BlueStacksServices.exe is directly responsible for both the slow boot (high startup impact) and the application crash at login (VBScript invocation during winlogon). The diagnosis is confirmed at two layers.
 
