@@ -78,7 +78,8 @@ Open Event Viewer by pressing `Windows + R`, typing `eventvwr.msc`, and pressing
 
 Filter for **Warning** and **Error** level events around the time of the reported fault. Look specifically for events that reference the processes identified in the Startup Apps tab.
 
-<img width="1108" height="698" alt="03_event_viewer_vbscript_warning_annotated" src="https://github.com/user-attachments/assets/a9373421-29ac-49fb-ad9d-fd7f1622752a" />
+<img width="1108" height="698" alt="03 Event manager warning for blue stack" src="https://github.com/user-attachments/assets/23c11d4b-79d4-4af2-9f1d-082ce6ddf44d" />
+
 
 
 Event recorded:
