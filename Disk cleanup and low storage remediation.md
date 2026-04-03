@@ -180,9 +180,9 @@ See `TICKET-0078-disk-cleanup.md` in this folder.
 
 ## Real World Relevance
 
-Disk space remediation is one of the most common and most preventable help desk tasks in any Windows environment. It arrives as Outlook errors, Windows Update failures, application crashes, and general sluggishness — rarely as a direct report of "my disk is full" because most users do not know how to check.
+Disk space remediation is one of the most common and most preventable help desk tasks in any Windows environment. It arrives as Outlook errors, Windows Update failures, application crashes, and general sluggishness - rarely as a direct report of "my disk is full" because most users do not know how to check.
 
-The technician workflow in this lab — check free space, break down usage by category, identify the largest safe cleanup target, run the appropriate tools, recheck and record the result — is repeatable on any Windows 11 machine and takes under 10 minutes to complete. It resolves multiple simultaneous complaints with a single set of actions, which is the highest-value outcome in help desk work.
+The technician workflow in this lab  checks free space, break down usage by category, identify the largest safe cleanup target, run the appropriate tools, recheck and record the result - is repeatable on any Windows 11 machine and takes under 10 minutes to complete. It resolves multiple simultaneous complaints with a single set of actions, which is the highest-value outcome in help desk work.
 
 The numbers matter here in a way they do not in most other support tasks. Recording 4.09 GB free before cleanup and 34.5 GB free after cleanup gives a hiring manager or senior technician an immediate sense of scale and confirms the job was done properly. Support portfolios that include measurable before and after values are consistently more credible than those that describe what was done without recording what changed.
 
