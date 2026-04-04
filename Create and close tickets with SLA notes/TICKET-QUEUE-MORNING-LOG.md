@@ -25,7 +25,7 @@
 
 ---
 
-## TKT-0081 — Password Reset
+## TKT-0081 - Password Reset
 
 **Opened:** 08:04 | **Closed:** 08:19 | **Total Time:** 15 minutes
 
@@ -55,7 +55,7 @@ Ticket logged immediately on phone. User informed that account unlock is being a
 
 ### Investigation
 
-No investigation required. Account lockout is a self-service preventable fault. Confirmed via Active Directory that the account is locked and that three failed attempts were logged at 07:56, 07:57, and 07:58. No suspicious activity — failed attempts occurred from the user's own machine.
+No investigation required. Account lockout is a self-service preventable fault. Confirmed via Active Directory that the account is locked and that three failed attempts were logged at 07:56, 07:57, and 07:58. No suspicious activity - failed attempts occurred from the user's own machine.
 
 ### Action Taken
 
@@ -81,7 +81,7 @@ Account lockout resolved. Identity verified via employee ID and manager callback
 
 ---
 
-## TKT-0082 - Printer Offline — Finance Department
+## TKT-0082 - Printer Offline - Finance Department
 
 **Opened:** 08:31 | **Closed:** 09:10 | **Total Time:** 39 minutes
 
@@ -99,7 +99,7 @@ Account lockout resolved. Identity verified via employee ID and manager callback
 
 ### Reported by
 
-Sandra Eze - Finance Department — reported via service portal at 08:31.
+Sandra Eze - Finance Department - reported via service portal at 08:31.
 
 ### Issue Description
 
