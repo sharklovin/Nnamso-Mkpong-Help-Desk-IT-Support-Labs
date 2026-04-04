@@ -1,4 +1,4 @@
-# Morning Ticket Queue — April 7, 2026
+# Morning Ticket Queue - April 7, 2026
 
 **Analyst:** Nnamso Mkpong
 **Shift Start:** 08:00
@@ -15,11 +15,11 @@
 
 | Ticket ID | Time Opened | Summary | Priority | Status | SLA |
 |---|---|---|---|---|---|
-| TKT-0081 | 08:04 | Password reset — James Okafor locked out | P2 High | Resolved | Met |
-| TKT-0082 | 08:31 | Printer offline — Finance team HP LaserJet | P2 High | Resolved | Met |
-| TKT-0083 | 08:47 | Outlook PST path broken — Adaeze Nwosu Legal | P2 High | Closed | Met |
-| TKT-0084 | 09:05 | New user setup — Chiamaka Bello starts April 14 | P3 Medium | Awaiting User | On track |
-| TKT-0085 | 09:22 | VPN auth loop — Emmanuel Chukwu remote sales | P2 High | Escalated to L2 | Met at L1 |
+| TKT-0081 | 08:04 | Password reset - James Okafor locked out | P2 High | Resolved | Met |
+| TKT-0082 | 08:31 | Printer offline - Finance team HP LaserJet | P2 High | Resolved | Met |
+| TKT-0083 | 08:47 | Outlook PST path broken - Adaeze Nwosu Legal | P2 High | Closed | Met |
+| TKT-0084 | 09:05 | New user setup - Chiamaka Bello starts April 14 | P3 Medium | Awaiting User | On track |
+| TKT-0085 | 09:22 | VPN auth loop - Emmanuel Chukwu remote sales | P2 High | Escalated to L2 | Met at L1 |
 
 ---
 
@@ -36,14 +36,14 @@
 | Category | Access Management |
 | Subcategory | Account Lockout |
 | Priority | P2 High |
-| Impact | Single user — no workaround, all systems inaccessible |
-| Urgency | High — user cannot start work |
+| Impact | Single user - no workaround, all systems inaccessible |
+| Urgency | High - user cannot start work |
 | SLA Response Target | 1 hour |
 | SLA Resolve Target | 8 hours |
 
 ### Reported by
 
-James Okafor — Operations Department — reported via phone at 08:04.
+James Okafor - Operations Department - reported via phone at 08:04.
 
 ### Issue Description
 
@@ -59,13 +59,13 @@ No investigation required. Account lockout is a self-service preventable fault. 
 
 ### Action Taken
 
-08:06 — Identity verified via employee ID (EMP-0182) and callback to line manager (Bola Adeyemi confirmed identity).
+08:06 - Identity verified via employee ID (EMP-0182) and callback to line manager (Bola Adeyemi confirmed identity).
 
-08:07 — Account unlocked in Active Directory Users and Computers. Temporary password issued per policy: minimum 12 characters, complexity enforced, must change at next login.
+08:07 - Account unlocked in Active Directory Users and Computers. Temporary password issued per policy: minimum 12 characters, complexity enforced, must change at next login.
 
-08:09 — Temporary password communicated to user via phone. User confirmed successful login at 08:12.
+08:09 - Temporary password communicated to user via phone. User confirmed successful login at 08:12.
 
-08:14 — Advised user on account lockout policy: three failed attempts triggers lockout. Recommended using the password manager to avoid future lockouts. Reminded user that the self-service password reset portal is available at the intranet link if this occurs out of hours.
+08:14 - Advised user on account lockout policy: three failed attempts triggers lockout. Recommended using the password manager to avoid future lockouts. Reminded user that the self-service password reset portal is available at the intranet link if this occurs out of hours.
 
 ### Resolution
 
@@ -81,7 +81,7 @@ Account lockout resolved. Identity verified via employee ID and manager callback
 
 ---
 
-## TKT-0082 — Printer Offline — Finance Department
+## TKT-0082 - Printer Offline — Finance Department
 
 **Opened:** 08:31 | **Closed:** 09:10 | **Total Time:** 39 minutes
 
@@ -99,7 +99,7 @@ Account lockout resolved. Identity verified via employee ID and manager callback
 
 ### Reported by
 
-Sandra Eze — Finance Department — reported via service portal at 08:31.
+Sandra Eze - Finance Department — reported via service portal at 08:31.
 
 ### Issue Description
 
@@ -107,35 +107,35 @@ HP LaserJet network printer on the second floor (last known IP 192.168.1.45) is 
 
 ### First Response
 
-**Sent at 08:39 — 8 minutes after intake:**
+**Sent at 08:39 - 8 minutes after intake:**
 
 > Hi Sandra, thank you for raising this. Ticket TKT-0082 is open and I am investigating the network printer now. I will update you within 30 minutes. If the issue is affecting any time-sensitive reporting today, please use the PDF save and email workaround in the meantime.
 
 ### Investigation
 
-08:42 — Checked print server (PRTSVR01) via remote management. HP LaserJet at 192.168.1.45 showing offline. Attempted ping to 192.168.1.45 — no response.
+08:42 - Checked print server (PRTSVR01) via remote management. HP LaserJet at 192.168.1.45 showing offline. Attempted ping to 192.168.1.45 — no response.
 
-08:45 — Checked DHCP server lease table (DHCP-SRV01). Found that IP address 192.168.1.45 had been released after the weekend router restart on Saturday April 5 at 02:14. The IP had been reassigned by DHCP to a different device (workstation WIN11-FIN-07) at 07:43 this morning.
+08:45 - Checked DHCP server lease table (DHCP-SRV01). Found that IP address 192.168.1.45 had been released after the weekend router restart on Saturday April 5 at 02:14. The IP had been reassigned by DHCP to a different device (workstation WIN11-FIN-07) at 07:43 this morning.
 
-08:48 — Checked the printer's current network address by physically accessing the device on the second floor. Printed a configuration page from the printer's control panel. Printer had obtained a new DHCP address: 192.168.1.108.
+08:48 - Checked the printer's current network address by physically accessing the device on the second floor. Printed a configuration page from the printer's control panel. Printer had obtained a new DHCP address: 192.168.1.108.
 
 Root cause confirmed: The printer lost its DHCP lease over the weekend and obtained a new IP address this morning. The print server and all client machines still reference the old IP (192.168.1.45) which now belongs to a different device.
 
 ### Action Taken
 
-08:52 — Updated printer port on PRTSVR01 to point to the new IP (192.168.1.108). Confirmed printer visible on network.
+08:52 - Updated printer port on PRTSVR01 to point to the new IP (192.168.1.108). Confirmed printer visible on network.
 
-08:55 — Cleared all 23 stuck jobs from the print queue that had accumulated since the printer went offline.
+08:55 - Cleared all 23 stuck jobs from the print queue that had accumulated since the printer went offline.
 
-08:57 — Sent a test page from the print server. Confirmed printed successfully on the second floor printer.
+08:57 - Sent a test page from the print server. Confirmed printed successfully on the second floor printer.
 
-09:00 — Assigned a static IP address to the printer at the router (192.168.1.45 reserved for the printer MAC address) so the printer always receives the same IP address regardless of DHCP lease events.
+09:00 - Assigned a static IP address to the printer at the router (192.168.1.45 reserved for the printer MAC address) so the printer always receives the same IP address regardless of DHCP lease events.
 
-09:02 — Updated print server port back to 192.168.1.45 and confirmed printer still responds correctly with the static reservation in place.
+09:02 - Updated print server port back to 192.168.1.45 and confirmed printer still responds correctly with the static reservation in place.
 
-09:05 — Notified Sandra that the printer is online and that users can retry their print jobs. Cleared queue — users will need to resubmit any jobs that were in the queue.
+09:05 - Notified Sandra that the printer is online and that users can retry their print jobs. Cleared queue — users will need to resubmit any jobs that were in the queue.
 
-09:08 — Sandra confirmed all eight team members can print. Test page confirmed at the printer.
+09:08 - Sandra confirmed all eight team members can print. Test page confirmed at the printer.
 
 ### Preventive Recommendation
 
@@ -151,7 +151,7 @@ Network printer fault resolved. Root cause was DHCP lease loss over the weekend 
 
 ---
 
-## TKT-0083 — Outlook PST Corruption
+## TKT-0083 - Outlook PST Corruption
 
 **See dedicated file:** `TICKET-0083-outlook-pst.md`
 
@@ -163,7 +163,7 @@ Network printer fault resolved. Root cause was DHCP lease loss over the weekend 
 
 ---
 
-## TKT-0084 — New User Account Setup
+## TKT-0084 - New User Account Setup
 
 **Opened:** 09:05 | **Status:** Awaiting User Response | **SLA:** Paused pending HR response
 
@@ -181,7 +181,7 @@ Network printer fault resolved. Root cause was DHCP lease loss over the weekend 
 
 ### Reported by
 
-HR Portal — automated submission — 09:05. New starter: Chiamaka Bello. Department: Legal. Start date: Monday April 14, 2026.
+HR Portal - automated submission — 09:05. New starter: Chiamaka Bello. Department: Legal. Start date: Monday April 14, 2026.
 
 ### Issue Description
 
@@ -189,7 +189,7 @@ New employee joining the Legal department on April 14 requires full account prov
 
 ### First Response
 
-**Sent at 09:22 — 17 minutes after intake:**
+**Sent at 09:22 - 17 minutes after intake:**
 
 > Hi HR Team, thank you for submitting the new starter request for Chiamaka Bello.
 >
