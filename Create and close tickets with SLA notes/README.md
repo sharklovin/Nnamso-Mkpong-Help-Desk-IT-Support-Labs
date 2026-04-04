@@ -1,4 +1,4 @@
-#Create and Close Tickets with SLA Notes
+# Create and Close Tickets with SLA Notes
 
 > **Author:** Nnamso Mkpong
 >
