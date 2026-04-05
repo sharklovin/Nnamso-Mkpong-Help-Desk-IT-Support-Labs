@@ -1,7 +1,7 @@
 # Help Desk Ticket #0091
 
-**Category:** Windows 11 — BitLocker Recovery — Device Encryption
-**Priority:** P1 Critical — user completely locked out, no workaround
+**Category:** Windows 11, BitLocker Recovery, Device Encryption
+**Priority:** P1 Critical (user completely locked out, no workaround)
 **Status:** Resolved
 
 ---
@@ -11,22 +11,22 @@
 | Field | Value |
 |---|---|
 | Ticket ID | TKT-0091 |
-| Date Opened | April 5, 2026 — 09:32 |
-| Date Resolved | April 5, 2026 — 10:07 |
+| Date Opened | April 5, 2026 - 09:32 |
+| Date Resolved | April 5, 2026 - 10:07 |
 | Total Resolution Time | 35 minutes |
 | SLA Response Target | 15 minutes (P1 Critical) |
 | SLA Resolve Target | 4 hours (P1 Critical) |
 | First Response Sent | 09:35 (3 minutes after intake) |
 | SLA Response Status | Met |
 | SLA Resolve Status | Met |
-| Assigned To | Nnamso Mkpong — IT Support L1 |
+| Assigned To | Nnamso Mkpong - IT Support L1 |
 | Affected User | Chiamaka Bello |
 | Department | Legal |
 | Machine | WIN11-CB-01 |
 | Asset Tag | AST-2026-0147 |
-| Location | Remote — working from home |
-| Impact | Single user — completely locked out of device |
-| Urgency | Critical — no workaround, all data inaccessible |
+| Location | Remote - working from home |
+| Impact | Single user - completely locked out of device |
+| Urgency | Critical - no workaround, all data inaccessible |
 
 ---
 
@@ -56,7 +56,7 @@ Step two: User confirmed asset tag AST-2026-0147 visible on the underside of the
 
 Step three: User confirmed line manager name: Sandra Eze, Finance Manager.
 
-Step four: Cross-referenced asset tag AST-2026-0147 in the asset register — confirmed assigned to Chiamaka Bello, Legal Department, since March 14, 2026.
+Step four: Cross-referenced asset tag AST-2026-0147 in the asset register - confirmed assigned to Chiamaka Bello, Legal Department, since March 14, 2026.
 
 Identity verification: Confirmed. Proceeding to key retrieval.
 
@@ -66,13 +66,13 @@ Identity verification: Confirmed. Proceeding to key retrieval.
 
 ## Investigation
 
-**09:35 — Initial assessment**
+**09:35 - Initial assessment**
 
 Confirmed with user that the recovery screen appeared after powering on this morning with no user-initiated changes. IT team applied a firmware update to the fleet overnight on April 4. WIN11-CB-01 was included in the firmware update batch. A firmware update changes the UEFI measurements that the TPM chip uses to validate the boot environment. When these measurements change, BitLocker cannot confirm the boot environment is unmodified and triggers a recovery event as a security precaution. This is expected behaviour following a firmware update.
 
 Root cause identified at intake: Firmware update applied overnight (April 4 maintenance window) changed TPM boot measurements, triggering BitLocker recovery on next boot.
 
-**09:38 — Recovery key retrieval**
+**09:38 - Recovery key retrieval**
 
 Navigated to Microsoft Endpoint Manager (Intune) > Devices > All Devices. Searched for WIN11-CB-01. Located device record. Navigated to the Recovery Keys tab. Located one BitLocker recovery key associated with the C: drive. Confirmed the Key ID shown in the admin portal matches the first 8 characters of the Key ID on the user's screen.
 
@@ -84,19 +84,19 @@ Key confirmed: Key ID match verified. Proceeding to key delivery.
 
 ## Actions Taken
 
-**09:42 — Guided key entry**
+**09:42 - Guided key entry**
 
 Read the 48-digit recovery key to the user in 8 groups of 6 digits, matching the format displayed on the recovery screen. Instructed the user to enter each group and confirm before moving to the next. User confirmed each group was entered correctly.
 
-**09:48 — Key accepted by BitLocker**
+**09:48 - Key accepted by BitLocker**
 
 User confirmed the recovery screen accepted the key and Windows began loading. Asked user to wait for the desktop to appear fully before confirming resolution.
 
-**09:52 — Access confirmed**
+**09:52 - Access confirmed**
 
 User confirmed Windows loaded to the desktop without further errors. Confirmed she can open files and access her legal case management application.
 
-**09:54 — TPM platform validation update**
+**09:54 - TPM platform validation update**
 
 To prevent the recovery event from recurring on the next reboot, the TPM platform validation profile must be updated to reflect the new firmware measurements.
 
