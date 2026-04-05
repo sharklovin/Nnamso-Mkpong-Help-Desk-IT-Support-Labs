@@ -199,7 +199,7 @@ See `TICKET-0091-bitlocker-recovery.md` in this folder.
 | Recovery key backup options reviewed and documented | Pass |
 | Recovery key saved to location external to encrypted drive | Pass |
 | Encryption progress observed and not interrupted | Pass |
-| Encryption completed — Encryption of C: is complete message confirmed | Pass |
+| Encryption completed - Encryption of C: is complete message confirmed | Pass |
 | BitLocker on state confirmed in Control Panel | Pass |
 | Management options (Suspend, Back up key, Turn off) documented | Pass |
 | Recovery key filename redacted in all published screenshots | Pass |
@@ -210,7 +210,7 @@ See `TICKET-0091-bitlocker-recovery.md` in this folder.
 
 ## What I Learned
 
-1. **BitLocker protects data at rest — not data in transit.** Encryption means the drive contents are unreadable without the correct key, even if the physical drive is removed and connected to another machine. This is why encryption is the minimum standard for any laptop in a business environment. A stolen unencrypted laptop is a data breach; a stolen BitLocker-encrypted laptop is a hardware loss.
+1. **BitLocker protects data at rest (not data in transit.)** Encryption means the drive contents are unreadable without the correct key, even if the physical drive is removed and connected to another machine. This is why encryption is the minimum standard for any laptop in a business environment. A stolen unencrypted laptop is a data breach; a stolen BitLocker-encrypted laptop is a hardware loss.
 
 2. **The recovery key must be stored before encryption begins, not after.** BitLocker requires key backup as part of the enable process for exactly this reason. If a technician enables BitLocker without confirming where the key is stored, and a recovery event occurs before the key is backed up, the data on that drive cannot be recovered by anyone.
 
@@ -237,8 +237,8 @@ BitLocker and device encryption knowledge also appears consistently in desktop s
 | Symptom | Likely Cause | Resolution |
 |---|---|---|
 | BitLocker recovery screen appears after reboot | Firmware or BIOS update changed the TPM measurement | Verify identity, retrieve key from Azure AD or AD, guide key entry, then update TPM platform validation profile |
-| Recovery key not found in Azure AD | Device was not enrolled in Intune or AAD before encryption | Check if key was saved to a file or printed at encryption time — if neither, data may be unrecoverable |
-| Recovery key found but does not unlock the drive | Wrong key for this device or key is from a different encryption state | Check Key ID on screen matches Key ID in admin system exactly — if not, search for other keys associated with the device |
+| Recovery key not found in Azure AD | Device was not enrolled in Intune or AAD before encryption | Check if key was saved to a file or printed at encryption time - if neither, data may be unrecoverable |
+| Recovery key found but does not unlock the drive | Wrong key for this device or key is from a different encryption state | Check Key ID on screen matches Key ID in admin system exactly - if not, search for other keys associated with the device |
 | BitLocker recovery screen appears every reboot | TPM platform validation profile not updated after firmware change | Suspend and resume BitLocker after the firmware update to refresh the TPM measurements |
 | User cannot type the 48-digit key correctly | Numeric keypad not active or keyboard layout issue | Instruct user to use the number row at the top of the keyboard, not the numpad, and go digit by digit |
 | Turn on BitLocker is greyed out or not available | TPM chip not present, not enabled in BIOS, or Group Policy restricting BitLocker | Check BIOS for TPM settings, check Group Policy for BitLocker configuration requirements |
