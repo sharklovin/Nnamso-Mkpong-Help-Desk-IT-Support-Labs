@@ -1,10 +1,10 @@
-# Lab 20: New User Onboarding and Offboarding Checklist
+# New User Onboarding and Offboarding Checklist
 
 > **Author:** Nnamso Mkpong
 >
-> **Domain:** Windows Server — Active Directory, Device Management, Software Deployment, Access Control
+> **Domain:** Windows Server - Active Directory, Device Management, Software Deployment, Access Control
 >
-> **Environment:** Windows Server 2022 (Domain Controller), Windows 11 Client VM, Active Directory Users and Computers, mylab.local domain
+> **Environment:** Windows Server 2022 (Domain Controller), Windows 11 Client VM, Active Directory Users and Computers, [domain] domain
 >
 > **Completed:** April 2026
 
@@ -17,8 +17,6 @@ Run a complete end-to-end support workflow for a new starter and a departing emp
 ---
 
 ## Business Scenario
-
-> **This is the flagship lab. It combines every core IT support competency into a single end-to-end workflow: identity management, device provisioning, software deployment, access control, and security-aware documentation.**
 
 **Onboarding:** HR has submitted a request for Maria Shima, a new Finance Department employee starting on 15 April 2026. She needs a domain account, department group membership, a laptop joined to the domain, Microsoft Office, Teams, and Google Chrome installed, and access to the Finance shared drive. The device must be ready before her first day.
 
@@ -33,14 +31,14 @@ Both workflows are documented with evidence at every step because in a regulated
 | Component | Detail |
 |---|---|
 | **Domain Controller OS** | Windows Server 2022 |
-| **Domain Name** | mylab.local |
-| **Client Machine** | WIN11_CLIENT01 — Windows 11 |
+| **Domain Name** | [domain] |
+| **Client Machine** | WIN11_CLIENT01 (Windows 11) |
 | **Identity Tool** | Active Directory Users and Computers (ADUC) |
-| **User Account** | maria.shima@mylab.local |
+| **User Account** | maria.shima@[domain] |
 | **Department Group** | Finance_Department (Global, Security) |
 | **Software Installed** | Microsoft Teams, WPS Office, Google Chrome, Microsoft 365 |
-| **Shared Drive** | \\192.168.1.10\Finance_Share — mapped as X: |
-| **Email Workflow** | Microsoft 365 licence assignment — documented workflow |
+| **Shared Drive** | \\[dc_ip]\Finance_Share — mapped as X: |
+| **Email Workflow** | Microsoft 365 licence assignment (documented workflow) |
 
 ---
 
@@ -90,93 +88,67 @@ OFFBOARDING WORKFLOW
 
 ---
 
-### Phase 1 — Receive and Log the Onboarding Request
+### Phase 1 - Receive and Log the Onboarding Request
 
-**Step 1.1 — Review the Onboarding Ticket**
+**Step 1.1 - Review the Onboarding Ticket**
 
 The onboarding request arrives from HR with all required information. Before any provisioning begins, confirm the ticket contains a start date, department, manager name, required applications, and hardware requirements. A ticket missing any of these fields should be returned to HR for completion before work begins.
 
-![01 Onboarding ticket — Maria Shima, Finance, starts 15 April 2026](screenshots/01_onboarding_ticket_annotated.png)
+<img width="752" height="510" alt="01 Onboarinding ticket" src="https://github.com/user-attachments/assets/e6c33a77-5134-4ff3-8585-75ce29e4311d" />
 
-Onboarding ticket contents confirmed:
-
-| Field | Value |
-|---|---|
-| Name | Maria Shima |
-| Department | Finance |
-| Manager | Heidi Hogan |
-| Start Date | 15 April 2026 |
-| Required Apps | Microsoft Office, Teams, Google Chrome |
-| Hardware | Laptop and Headset |
 
 > **Highlighted:** The Name, Start Date, and Required Apps fields are the three most operationally critical fields. Name determines the account naming convention. Start Date creates the provisioning deadline. Required Apps drives the software installation checklist. All three are confirmed present before any work begins.
 
 ---
 
-### Phase 2 — Create the Active Directory User Account
+### Phase 2 - Create the Active Directory User Account
 
-**Step 2.1 — Create the User Account in ADUC**
+**Step 2.1 - Create the User Account in ADUC**
 
-Open Active Directory Users and Computers on the domain controller. Navigate to the appropriate Organisational Unit (in this lab, mylab.local/Users). Right-click and select New > User. Complete all required fields following the organisation's naming convention.
+Open Active Directory Users and Computers on the domain controller. Navigate to the appropriate Organisational Unit (in this lab, [domain]/Users). Right-click and select New > User. Complete all required fields following the organisation's naming convention.
 
-![02 New user creation form — maria.shima@mylab.local](screenshots/02_ad_user_creation_annotated.png)
+<img width="433" height="375" alt="02 user creation" src="https://github.com/user-attachments/assets/8ab42085-62b7-4dbc-99f3-922eef40b530" />
 
-Account creation fields completed:
 
-| Field | Value |
-|---|---|
-| First name | Maria |
-| Last name | Shima |
-| Full name | Maria Shima |
-| User logon name | maria.shima |
-| Domain | @mylab.local |
-| Pre-Windows 2000 logon | MYLAB\maria.shima |
-
-> **Highlighted:** The user logon name (maria.shima@mylab.local) is the UPN that will be used for all Microsoft 365 and domain authentication. Consistent naming conventions across all accounts make administration, auditing, and password reset requests significantly easier to manage at scale.
+> **Highlighted:** The user logon name (maria.shima@m[domain]) is the UPN that will be used for all Microsoft 365 and domain authentication. Consistent naming conventions across all accounts make administration, auditing, and password reset requests significantly easier to manage at scale.
 
 ---
 
-**Step 2.2 — Confirm the Account Appears in ADUC**
+**Step 2.2 - Confirm the Account Appears in ADUC**
 
 After saving the account, refresh the Users container and confirm Maria Shima appears in the list as a User object.
 
-![03 Maria Shima account visible in Active Directory Users and Computers](screenshots/03_user_created_in_aduc_annotated.png)
+<img width="655" height="520" alt="03 user created in aduc" src="https://github.com/user-attachments/assets/d203d7ba-34c1-42c6-8723-7419e2ba6ed5" />
 
-> **Highlighted:** The Maria Shima User object is visible in ADUC alongside other accounts. The account exists in the domain and can authenticate. At this stage the account has no group memberships beyond Domain Users and no resources have been assigned.
+
+> **Highlighted:** The Maria Shima User object is visible in ADUC alongside other accounts. 
 
 ---
 
-### Phase 3 — Create the Department Security Group and Assign Membership
+### Phase 3 - Create the Department Security Group and Assign Membership
 
-**Step 3.1 — Create the Finance_Department Security Group**
+**Step 3.1 - Create the Finance_Department Security Group**
 
 Navigate to the Users container in ADUC. Right-click and select New > Group. Create a Global Security group named Finance_Department.
 
-![04 Finance_Department group created — Global, Security type](screenshots/04_finance_department_group_created_annotated.png)
+<img width="435" height="377" alt="04 finance_dept group created" src="https://github.com/user-attachments/assets/714464d9-3974-4f42-9f23-304c8745c1b6" />
 
-Group configuration:
-
-| Setting | Value | Why |
-|---|---|---|
-| Group name | Finance_Department | Department-aligned naming for clear access management |
-| Group scope | Global | Accessible across the domain |
-| Group type | Security | Used for resource access control, not email distribution |
 
 > A Global Security group is the correct choice for department resource access control. It can be assigned to shared folders, printers, and other resources across the domain. Using individual user accounts for resource permissions instead of groups creates an unmanageable permission model as the organisation grows.
 
 ---
 
-**Step 3.2 — Add Maria Shima to the Finance_Department Group**
+**Step 3.2 - Add Maria Shima to the Finance_Department Group**
 
 Open Maria Shima's account properties and navigate to the Member Of tab. Click Add and search for Finance_Department.
 
-![05 Adding Finance_Department group to Maria Shima's account](screenshots/05_adding_user_to_group_annotated.png)
+<img width="456" height="249" alt="06 adding user to group" src="https://github.com/user-attachments/assets/10fabda0-6d5e-47a1-b6db-07fc38b759d1" />
 
-> **Highlighted:** The Finance_Department group is entered in the object name field and confirmed via Check Names. Adding the user to the group via her account properties (Member Of tab) rather than the group itself produces the same result — both methods are valid.
 
+> **Highlighted:** The Finance_Department group is entered in the object name field and confirmed via Check Names. 
 ---
 
-**Step 3.3 — Confirm Group Membership**
+**Step 3.3 - Confirm Group Membership**
 
 Return to the Member Of tab on Maria Shima's account properties and confirm both group memberships are present: Domain Users (default) and Finance_Department (newly assigned).
 
@@ -192,7 +164,8 @@ Return to the Member Of tab on Maria Shima's account properties and confirm both
 
 On the Windows 11 client machine, open System Properties (sysdm.cpl) and click Change. Select Domain and enter mylab.local. Provide domain administrator credentials when prompted.
 
-![07 Computer Name and Domain Changes dialog — joining mylab.local](screenshots/07_domain_join_dialog_annotated.png)
+![07 Computer Name and Domain Changes dialog — joining mylab.local](screenshots/07_domain_join_dialog_annotated.png)![Uploading 08 domain name join dialog.png…]()
+
 
 > **Highlighted:** The computer name WIN11_CLIENT01 follows the organisation's device naming convention. The domain is set to mylab.local. The DNS server on this client must point to the domain controller IP address for the domain join to resolve correctly.
 
