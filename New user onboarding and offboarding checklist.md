@@ -152,82 +152,87 @@ Open Maria Shima's account properties and navigate to the Member Of tab. Click A
 
 Return to the Member Of tab on Maria Shima's account properties and confirm both group memberships are present: Domain Users (default) and Finance_Department (newly assigned).
 
-![06 Member Of tab — Domain Users and Finance_Department confirmed](screenshots/06_user_group_membership_confirmed_annotated.png)
+<img width="410" height="536" alt="07 user group membership confirmed" src="https://github.com/user-attachments/assets/8b88a3d0-ccc9-4cb9-a02a-8de01e581147" />
 
-> **Highlighted:** Two group memberships are confirmed. Domain Users is the default membership for all domain accounts. Finance_Department is the department-specific group that will control access to the Finance shared drive and any other Finance-scoped resources. The Primary Group is Domain Users — this is correct and does not need to be changed unless Macintosh or POSIX clients are in use.
+
+> **Highlighted:** Two group memberships are confirmed. Domain Users is the default membership for all domain accounts. Finance_Department is the department-specific group that will control access to the Finance shared drive and any other Finance-scoped resources. 
+---
+
+### Phase 4 - Join the Device to the Domain
+
+**Step 4.1 - Configure Domain Join on WIN11_CLIENT01**
+
+On the Windows 11 client machine, open System Properties (sysdm.cpl) and click Change. Select Domain and enter [domain]. Provide domain administrator credentials when prompted.
+
+<img width="319" height="385" alt="08 domain name join dialog" src="https://github.com/user-attachments/assets/108e0f29-5035-4ef1-87ff-db1231ba9234" />
+
+
+> **Highlighted:** The computer name WIN11_CLIENT01 follows the organisation's device naming convention. The domain is set to [domain]. The DNS server on this client must point to the domain controller IP address for the domain join to resolve correctly.
 
 ---
 
-### Phase 4 — Join the Device to the Domain
-
-**Step 4.1 — Configure Domain Join on WIN11_CLIENT01**
-
-On the Windows 11 client machine, open System Properties (sysdm.cpl) and click Change. Select Domain and enter mylab.local. Provide domain administrator credentials when prompted.
-
-![07 Computer Name and Domain Changes dialog — joining mylab.local](screenshots/07_domain_join_dialog_annotated.png)![Uploading 08 domain name join dialog.png…]()
-
-
-> **Highlighted:** The computer name WIN11_CLIENT01 follows the organisation's device naming convention. The domain is set to mylab.local. The DNS server on this client must point to the domain controller IP address for the domain join to resolve correctly.
-
----
-
-**Step 4.2 — Confirm Domain Join in System Properties**
+**Step 4.2 - Confirm Domain Join in System Properties**
 
 After the restart, open System Properties and confirm the machine shows the full computer name and domain.
 
-![08 System Properties — WIN11_CLIENT01.mylab.local domain confirmed](screenshots/08_device_joined_confirmed_annotated.png)
+<img width="411" height="465" alt="09 device joined sucessfully " src="https://github.com/user-attachments/assets/ba03df66-d8cb-4ba9-a9aa-4b69046f6388" />
 
-> **Highlighted:** The full computer name reads WIN11_CLIENT01.mylab.local and the Domain field shows mylab.local. The device is now a domain member. Domain users can log in to this machine and Group Policy will apply on the next boot.
+
+> **Highlighted:** The full computer name reads WIN11_CLIENT01.[domain] and the Domain field shows [domain]. The device is now a domain member. Domain users can log in to this machine and Group Policy will apply on the next boot.
 
 ---
 
-**Step 4.3 — Verify Device Appears in ADUC Computers Container**
+**Step 4.3 - Verify Device Appears in ADUC Computers Container**
 
 Return to Active Directory Users and Computers on the domain controller. Navigate to the Computers container and confirm WIN11_CLIENT01 appears as a Computer object.
 
-![09 WIN11_CLIENT01 visible in ADUC Computers container](screenshots/09_device_visible_in_aduc_annotated.png)
+<img width="856" height="602" alt="10 cdevice visible in ADCU" src="https://github.com/user-attachments/assets/f1cd967a-e6fa-4203-b9a6-8545c0cde56d" />
 
-> **Highlighted:** WIN11_CLIENT01 is registered in the Computers OU under mylab.local. This confirms the domain join completed successfully and the machine is known to Active Directory. Group Policy Objects assigned to the Computers container will apply to this device.
+
+> **Highlighted:** WIN11_CLIENT01 is registered in the Computers OU under [domain]. This confirms the domain join completed successfully and the machine is known to Active Directory. Group Policy Objects assigned to the Computers container will apply to this device.
 
 ---
 
-### Phase 5 — Configure Email Access
+### Phase 5 - Configure Email Access
 
-**Step 5.1 — Document the Microsoft 365 Email Provisioning Workflow**
+**Step 5.1 - Document the Microsoft 365 Email Provisioning Workflow**
 
 Email provisioning in Microsoft 365 requires actions in the M365 admin centre rather than in Active Directory. The workflow was documented rather than executed in this lab VM because a live M365 tenant was not available in the test environment.
 
-![10 Email access workflow documented — M365 licence assignment steps](screenshots/10_email_access_workflow_annotated.png)
+<img width="477" height="401" alt="11 email access workflow" src="https://github.com/user-attachments/assets/887b688f-6277-454f-9948-6c724c5695ce" />
+
 
 Email provisioning workflow for Maria Shima:
 
 | Step | Action | Performed by |
 |---|---|---|
 | 1 | IT submits licence request to M365 admin | IT Support |
-| 2 | Admin assigns Microsoft 365 licence to maria.shima@mylab.local | M365 Admin |
+| 2 | Admin assigns Microsoft 365 licence to maria.shima@[domain] | M365 Admin |
 | 3 | Exchange Online mailbox created automatically | Automatic |
 | 4 | IT verifies access via Outlook or OWA | IT Support |
 | 5 | Confirmation sent to manager Heidi Hogan | IT Support |
 
-> Documenting the workflow when a live system is not available is the correct approach for a lab portfolio. It demonstrates understanding of the process without misrepresenting what was executed in the lab environment.
+> Documenting the workflow when a live system is not available is the correct approach for this lab. It demonstrates understanding of the process without misrepresenting what was executed in the lab environment.
 
 ---
 
-### Phase 6 — Install Required Software
+### Phase 6 - Install Required Software
 
-**Step 6.1 — Install Microsoft Teams, WPS Office, and Supporting Applications**
+**Step 6.1 - Install Microsoft Teams, WPS Office, and Supporting Applications**
 
 Install all applications listed on the onboarding ticket. Verify each installation in Settings > Apps > Installed Apps.
 
-![11 Installed apps — Microsoft Teams, WPS Office, Microsoft OneDrive, Microsoft Teams Meeting Add-in](screenshots/11_apps_installed_teams_office_annotated.png)
+<img width="1035" height="671" alt="12teams and wps office screenshot" src="https://github.com/user-attachments/assets/7aed9977-8792-4cfe-9b4e-670ee79755c3" />
 
-> **Highlighted:** Microsoft Teams is confirmed installed at version 1.25.28902 (4/7/2026) and WPS Office at version 12.2.0.23196. Both are visible in the Installed Apps list alongside Microsoft OneDrive and the Teams Meeting Add-in.
+
+> **Highlighted:** Microsoft Teams is confirmed installed at version 1.25.28902 (4/7/2026) and WPS Office at version 12.2.0.23196. Both are visible in the Installed Apps list-
 
 ---
 
-**Step 6.2 — Confirm Google Chrome and Microsoft 365 Installation**
+**Step 6.2 - Confirm Google Chrome and Microsoft 365 Installation**
 
-![12 Installed apps — Google Chrome and Microsoft 365 confirmed](screenshots/12_apps_installed_chrome_m365_annotated.png)
+<img width="1042" height="420" alt="13 google screenshot" src="https://github.com/user-attachments/assets/2789c756-0e6d-4d90-bd6a-64b75df6011a" />
+
 
 > **Highlighted:** Google Chrome version 146.0.7680.178 is confirmed installed (4/7/2026). Microsoft 365 version 16.0.19822.20142 is confirmed installed (4/7/2026). All three applications from the onboarding ticket are now installed and verified.
 
@@ -239,52 +244,41 @@ Software installation summary:
 | WPS Office | 12.2.0.23196 | Installed |
 | Google Chrome | 146.0.7680.178 | Installed |
 | Microsoft 365 | 16.0.19822.20142 | Installed |
-| Microsoft OneDrive | 26.040.0301.0001 | Installed |
 
 ---
 
-### Phase 7 — Create Shared Folder and Map Network Drive
+### Phase 7 - Create Shared Folder and Map Network Drive
 
-**Step 7.1 — Confirm Finance_Share Folder is Shared on the File Server**
+**Step 7.1 - Confirm Finance_Share Folder is Shared on the File Server**
 
 On the file server, navigate to the Finance_Share folder properties and confirm it is shared with the correct network path.
 
-![13 Finance_Share folder properties — shared at \\WINDOWSSERVER202\Finance_Share](screenshots/13_finance_share_folder_properties_annotated.png)
+<img width="358" height="480" alt="14 finance share folder properties" src="https://github.com/user-attachments/assets/7527a9ff-e2da-4d58-ae71-c5a95ef66522" />
 
-> **Highlighted:** The network path \\WINDOWSSERVER202\Finance_Share confirms the folder is shared on the file server. NTFS permissions should be configured to allow the Finance_Department security group Read and Write access, and deny access to all other groups. The Finance_Department group assigned in Step 3 controls who can access this share.
 
----
-
-**Step 7.2 — Map the Network Drive on the Client Machine**
-
-On WIN11_CLIENT01, map the Finance_Share as a persistent network drive. The drive is mapped to X: from \\192.168.1.10\Finance_Share.
-
-![14 Network drive Finance_Share mapped as X: — visible in File Explorer](screenshots/14_network_drive_mapped_annotated.png)
-
-> **Highlighted:** Finance_Share (\\192.168.1.10) is visible in File Explorer under Network Locations, mapped as drive X: with 42.6 GB free of 59.3 GB. The drive is accessible from the client machine. Maria Shima's Finance_Department group membership grants her access to this share automatically.
+> **Highlighted:** The network path \\[dc_ip]\Finance_Share confirms the folder is shared on the file server. NTFS permissions should be configured to allow the Finance_Department security group Read and Write access, and deny access to all other groups. The Finance_Department group assigned in Step 3 controls who can access this share.
 
 ---
 
-### Phase 8 — Produce the Day One Handover Note
+**Step 7.2 - Map the Network Drive on the Client Machine**
 
-**Step 8.1 — Create the Handover Document for the New User**
+On WIN11_CLIENT01, map the Finance_Share as a persistent network drive. The drive is mapped to X: from \\[dc_ip]\Finance_Share.
+
+<img width="783" height="546" alt="15 NETWORK MAPPING" src="https://github.com/user-attachments/assets/ca2905f1-87ac-4da5-9f8f-0ac024f5761c" />
+
+
+> **Highlighted:** Finance_Share (\\[dc_ip]) is visible in File Explorer under Network Locations, mapped as drive X: with 42.6 GB free of 59.3 GB. The drive is accessible from the client machine. Maria Shima's Finance_Department group membership grants her access to this share automatically.
+
+---
+
+### Phase 8 - Produce the Day One Handover Note
+
+**Step 8.1- Create the Handover Document for the New User**
 
 Before the user's first day, produce a handover note summarising everything that has been provisioned. This document is given to the user and a copy is attached to the ticket.
 
-![15 Day One handover note — all provisioning confirmed](screenshots/15_day_one_handover_note_annotated.png)
+<img width="588" height="598" alt="16 day one hand over note" src="https://github.com/user-attachments/assets/aa3fa475-01d1-4b19-9ace-74f114a3ee17" />
 
-Handover note contents confirmed:
-
-| Section | Details |
-|---|---|
-| Name and Department | Maria Shima — Finance |
-| Manager | Heidi Hogan |
-| Start Date | 15 April 2026 |
-| Device | WIN11_CLIENT01 |
-| Login | MYLAB\maria.shima |
-| Email | maria.shima@mylab.local (documented workflow) |
-| Software | Microsoft Office, Microsoft Teams, Google Chrome |
-| Access | Domain User, Finance Department Group, Finance_Share (\\192.168.1.10\Finance_Share) |
 
 > **Highlighted:** All three sections confirm the provisioning checklist is complete. Login credentials are documented for handover. Software installed matches the onboarding ticket requirements exactly. Access granted includes domain membership, department group, and the shared drive path.
 
