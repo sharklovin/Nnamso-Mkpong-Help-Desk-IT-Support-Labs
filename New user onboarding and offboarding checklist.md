@@ -288,86 +288,66 @@ Before the user's first day, produce a handover note summarising everything that
 
 ---
 
-### Phase 9 — Receive and Log the Offboarding Request
+### Phase 9 - Receive and Log the Offboarding Request
 
-**Step 9.1 — Review the Offboarding Ticket**
+**Step 9.1 - Review the Offboarding Ticket**
 
 The offboarding request is submitted by Heidi Hogan (Maria Shima's manager) on 29 April 2026. Last day of employment is 30 April 2026. All actions must be completed by end of business on the last day.
 
-![16 Offboarding ticket — Maria Shima, last day 30 April 2026](screenshots/16_offboarding_ticket_annotated.png)
+<img width="581" height="600" alt="17 Offboarding ticket" src="https://github.com/user-attachments/assets/ad97b2df-c768-4c3a-937c-3d000ac99ae3" />
 
-Offboarding actions required:
-
-| Action | Priority | Security Reason |
-|---|---|---|
-| Disable AD account | First — complete before any other step | Immediately blocks all authentication |
-| Remove group memberships | Second | Removes access to all group-controlled resources |
-| Reset password | Third | Prevents account reactivation if re-enabled accidentally |
-| Collect laptop (WIN11_CLIENT01) | Before end of day | Physical asset recovery |
-| Collect headset | Before end of day | Physical asset recovery |
-| Verify no outstanding data needed | Before device wipe | Protect any business-critical files |
-
-> **Highlighted:** The action items are listed in the correct order of priority. The account must be disabled first — before any notification is sent to the user — to prevent the departing employee from taking further action in company systems. Group removal and password reset follow to harden the disabled account.
+> **Highlighted:** The action items are listed in the correct order of priority. The account must be disabled first  before any notification is sent to the user  to prevent the departing employee from taking further action in company systems. Group removal and password reset follow to harden the disabled account.
 
 ---
 
-### Phase 10 — Disable the Active Directory Account
+### Phase 10 - Disable the Active Directory Account
 
-**Step 10.1 — Disable Maria Shima's Account in ADUC**
+**Step 10.1 - Disable Maria Shima's Account in ADUC**
 
 Right-click on Maria Shima's account in ADUC and select Disable Account. Confirm the action when prompted.
 
-![17 Active Directory confirmation — Object Maria Shima has been disabled](screenshots/17_account_disabled_confirmation_annotated.png)
+<img width="290" height="152" alt="18 disable maria account" src="https://github.com/user-attachments/assets/b3449bde-01e3-44fc-be4d-686959d22fdc" />
 
-> **Highlighted:** The confirmation dialog reads Object Maria Shima has been disabled. The account is now unable to authenticate to any domain resource. The user cannot log in to Windows, cannot access email via Outlook or OWA, and cannot connect to the VPN. This is the most critical single action in the offboarding workflow.
+
+> **Highlighted:** The confirmation dialog reads Object Maria Shima has been disabled. The account is now unable to authenticate to any domain resource. The user cannot log in to Windows, cannot access email , and cannot connect to the VPN. This is the most critical single action in the offboarding workflow.
 
 ---
 
-### Phase 11 — Remove Group Memberships
+### Phase 11 - Remove Group Memberships
 
-**Step 11.1 — Remove Maria Shima from Finance_Department Group**
+**Step 11.1 - Remove Maria Shima from Finance_Department Group**
 
 Open the Finance_Department group properties. Navigate to the Members tab. Select Maria Shima and click Remove. Confirm when prompted.
 
-![18 Remove Maria Shima from Finance_Department — confirmation dialog](screenshots/18_remove_from_group_dialog_annotated.png)
+<img width="401" height="452" alt="19 remove maria from group" src="https://github.com/user-attachments/assets/f61cd322-cb7f-4b80-95dc-599710edd1f4" />
 
-> **Highlighted:** The confirmation dialog asks whether to remove the selected member from the group. Maria Shima is listed as the member being removed from Finance_Department (mylab.local/Users). After clicking Yes, she will no longer have access to any resource controlled by the Finance_Department group, including the Finance_Share network drive.
+
+> **Highlighted:** The confirmation dialog asks whether to remove the selected member from the group. Maria Shima is listed as the member being removed from Finance_Department ([domain]/Users). After clicking Yes, she will no longer have access to any resource controlled by the Finance_Department group, including the Finance_Share network drive.
 
 ---
 
-### Phase 12 — Reset the Password
+### Phase 12 - Reset the Password
 
-**Step 12.1 — Reset Password and Configure Account Options**
+**Step 12.1 - Reset Password and Configure Account Options**
 
 Open Maria Shima's account properties in ADUC and navigate to the Account tab. Set a strong temporary password and ensure the User must change password at next logon checkbox is ticked. This prevents the account from being reactivated with the original credentials if it is accidentally re-enabled in the future.
 
-![19 Account tab — User must change password at next logon confirmed](screenshots/19_password_reset_account_options_annotated.png)
+<img width="413" height="540" alt="20 user must change password" src="https://github.com/user-attachments/assets/341c392b-9ae7-4f04-a75b-19903d0cd98b" />
 
-> **Highlighted:** User must change password at next logon is ticked. This means the password is now set to an IT-controlled value that the departing user does not know. Even if the account were accidentally re-enabled, the user could not log in without contacting IT. The Unlock Account checkbox is cleared — this should remain unchecked for a disabled account.
+
+> **Highlighted:** User must change password at next logon is ticked. This means the password is now set to an IT-controlled value that the departing user does not know. Even if the account were accidentally re-enabled, the user could not log in without contacting IT.
 
 ---
 
-### Phase 13 — Collect the Device and Complete the Hardware Checklist
+### Phase 13 - Collect the Device and Complete the Hardware Checklist
 
-**Step 13.1 — Complete the Device Collection Checklist**
+**Step 13.1 - Complete the Device Collection Checklist**
 
 Before the device is wiped and redeployed, complete a physical hardware checklist confirming what was returned, the condition of each item, and who collected it.
 
-![20 Device collection checklist — WIN11_CLIENT01 returned, data wipe required](screenshots/20_device_collection_checklist_annotated.png)
+<img width="586" height="600" alt="21 Device collection checlist" src="https://github.com/user-attachments/assets/b4f6afd9-a295-47d0-9276-152db5c6a38b" />
 
-Device collection confirmed:
 
-| Item | Returned | Condition |
-|---|---|---|
-| Laptop (WIN11_CLIENT01) | Yes | No physical damage |
-| Power adapter | Yes | Functional |
-| Headset | Yes | Functional |
-| Docking station | N/A | Not issued |
-| Mouse | Yes | Functional |
-| Screen | No cracks | Confirmed |
-| Keyboard | Functional | Confirmed |
-| Battery | Holds charge | Confirmed |
-| Data wipe required | Yes | Scheduled for reimaging |
 
 > **Highlighted:** Hardware returned, device condition, and data wipe requirement are all recorded. The collection was performed by Nnamso (technician name recorded). The device is noted as ready for reimaging and redeployment. This checklist forms part of the audit trail that confirms no company assets were retained by the departing employee.
 
@@ -377,9 +357,9 @@ Device collection confirmed:
 
 > **Onboarding and offboarding are the two workflows where IT support has the highest direct impact on business security and operational continuity — and where mistakes are the most costly.**
 
-An incomplete onboarding means a new employee cannot start work on their first day. They cannot log in, access their email, find their team's shared files, or use the tools they need. The cost is not just the new employee's lost productivity — it is the management time spent chasing IT, the poor first impression of the organisation, and the risk of the user finding workarounds that bypass security controls.
+An incomplete onboarding means a new employee cannot start work on their first day. They cannot log in, access their email, find their team's shared files, or use the tools they need. The cost is not just the new employee's lost productivity - it is the management time spent chasing IT, the poor first impression of the organisation, and the risk of the user finding workarounds that bypass security controls.
 
-An incomplete offboarding is a security incident waiting to happen. A departing employee whose account is still active, group memberships are still in place, and password is unchanged retains full access to company data until someone notices. In a regulated environment, this is not just a policy violation — it is a reportable compliance event. A clear offboarding checklist completed on the last day of employment with evidence at every step is the minimum standard for any managed IT environment.
+An incomplete offboarding is a security incident waiting to happen. A departing employee whose account is still active, group memberships are still in place, and password is unchanged retains full access to company data until someone notices. In a regulated environment, this is not just a policy violation - it is a reportable compliance event. A clear offboarding checklist completed on the last day of employment with evidence at every step is the minimum standard for any managed IT environment.
 
 The combination of both workflows in a single lab demonstrates that the technician understands the full user lifecycle — not just the technical steps, but the security reasoning behind the order of those steps and the documentation required to prove they were completed.
 
