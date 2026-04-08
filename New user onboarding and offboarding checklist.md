@@ -107,7 +107,8 @@ The onboarding request arrives from HR with all required information. Before any
 
 Open Active Directory Users and Computers on the domain controller. Navigate to the appropriate Organisational Unit (in this lab, [domain]/Users). Right-click and select New > User. Complete all required fields following the organisation's naming convention.
 
-<img width="433" height="375" alt="02 user creation" src="https://github.com/user-attachments/assets/8ab42085-62b7-4dbc-99f3-922eef40b530" />
+<img width="433" height="375" alt="02 user creation" src="https://github.com/user-attachments/assets/4b060f40-2f65-443b-8f6b-5631ea662018" />
+
 
 
 > **Highlighted:** The user logon name (maria.shima@m[domain]) is the UPN that will be used for all Microsoft 365 and domain authentication. Consistent naming conventions across all accounts make administration, auditing, and password reset requests significantly easier to manage at scale.
