@@ -279,7 +279,8 @@ On WIN11_CLIENT01, map the Finance_Share as a persistent network drive. The driv
 
 Before the user's first day, produce a handover note summarising everything that has been provisioned. This document is given to the user and a copy is attached to the ticket.
 
-<img width="588" height="598" alt="16 day one hand over note" src="https://github.com/user-attachments/assets/aa3fa475-01d1-4b19-9ace-74f114a3ee17" />
+<img width="588" height="598" alt="16 day one hand over note" src="https://github.com/user-attachments/assets/1c27f6db-b428-4d56-8013-cc7e0ddfa5ed" />
+
 
 
 > **Highlighted:** All three sections confirm the provisioning checklist is complete. Login credentials are documented for handover. Software installed matches the onboarding ticket requirements exactly. Access granted includes domain membership, department group, and the shared drive path.
